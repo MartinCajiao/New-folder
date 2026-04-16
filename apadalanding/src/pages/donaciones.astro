@@ -1,0 +1,73 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { DonationCard } from '../components/sections/DonationCard';
+import { SITE_INFO, IMPACT_METRICS } from '../core/constants/site-info';
+---
+
+<MainLayout 
+  title="Donaciones y Voluntariado" 
+  description="Colabora con APADA del Ecuador. Tu apoyo nos permite seguir brindando recursos, asesoría legal y actividades inclusivas."
+>
+  <section class="bg-blue-600 py-16 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h1 class="text-4xl font-extrabold mb-4">Colabora con APADA</h1>
+        <p class="text-blue-100 text-lg max-w-2xl mx-auto">
+          Cada acción cuenta. Juntos estamos construyendo una sociedad más inclusiva y respetuosa para las personas con autismo en Ecuador.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+        {IMPACT_METRICS.map((metric) => (
+          <div class="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
+            <span class="block text-4xl md:text-5xl font-black mb-2">{metric.valor}</span>
+            <span class="text-sm md:text-base font-medium text-blue-100 uppercase tracking-wide">
+              {metric.etiqueta}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
+        <div class="space-y-6">
+          <h2 class="text-3xl font-bold text-slate-900 border-l-4 border-orange-500 pl-4">Nuestra Misión</h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            {SITE_INFO.mission}
+          </p>
+        </div>
+        <div class="space-y-6">
+          <h2 class="text-3xl font-bold text-slate-900 border-l-4 border-blue-600 pl-4">Nuestra Visión</h2>
+          <p class="text-lg text-slate-600 leading-relaxed">
+            {SITE_INFO.vision}
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">Donación</h2>
+        <p class="text-slate-600 max-w-xl mx-auto">
+          Realiza tu aporte mediante transferencia bancaria. Tu contribución permite continuar con talleres, asesorías legales y materiales gratuitos.
+        </p>
+      </div>
+
+      <DonationCard client:load />
+
+      <div class="mt-16 text-center">
+        <p class="text-slate-500 text-sm">
+          ¿Deseas colaborar como voluntario o tienes dudas sobre cómo donar? 
+          <a href="https://wa.me/593996062600" class="text-blue-600 font-bold hover:underline ml-1">
+            Contáctanos por WhatsApp
+          </a>
+        </p>
+      </div>
+    </div>
+  </section>
+</MainLayout>

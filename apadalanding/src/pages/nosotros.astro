@@ -1,0 +1,152 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Card } from '../components/ui/Card';
+import { SITE_INFO } from '../core/constants/site-info';
+---
+
+<MainLayout 
+  title="Sobre Nosotros" 
+  description="Conoce la historia de APADA del Ecuador: una asociación de padres comprometidos con el bienestar y los derechos de las personas con autismo."
+>
+  <section class="relative py-20 md:py-32 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <span class="inline-block py-1 px-3 rounded-full bg-orange-100 text-orange-700 text-sm font-bold tracking-wider uppercase mb-6">
+            Nuestra Esencia
+          </span>
+          <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-slate-900 leading-tight mb-6">
+            Somos padres que <span class="text-blue-600">ayudan a padres</span>
+          </h1>
+          <p class="text-lg md:text-xl text-slate-600 leading-relaxed mb-8 text-balance">
+            Somos un grupo de padres, sin fines de lucro, que buscamos apoyo mutuo para capacitarnos y aprender a ayudar a nuestros hijos.
+          </p>
+          <div class="flex items-center gap-4 p-4 bg-blue-50 rounded-2xl border border-blue-100">
+            <div class="text-3xl">🤝</div>
+            <p class="text-sm text-blue-800 font-medium">
+              Trabajamos por la defensa de los derechos de las personas con autismo en todo el Ecuador.
+            </p>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <div class="aspect-video rounded-3xl bg-slate-200 overflow-hidden shadow-2xl relative z-10">
+            <div class="w-full h-full flex items-center justify-center text-slate-400 font-medium">
+              [Foto Comunidad APADA]
+            </div>
+          </div>
+          <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl -z-10"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-900 text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div class="order-2 md:order-1">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6">Compromiso con el Bienestar</h2>
+          <div class="space-y-6 text-slate-300 text-lg leading-relaxed">
+            <p>
+              APADA constituye una organización de la sociedad civil, comprometida con el bienestar de las personas con autismo y sus cuidadores en Ecuador.
+            </p>
+            <p>
+              Trabajamos en conjunto con el <strong>Ministerio de Salud Pública (MSP)</strong>, coordinando acciones que incluyen atención integral en salud y la calificación de discapacidades.
+            </p>
+          </div>
+          <div class="mt-10 flex flex-wrap gap-4">
+            <div class="px-6 py-3 bg-white/10 rounded-xl border border-white/20 text-sm font-bold">
+              Aliados del MSP
+            </div>
+            <div class="px-6 py-3 bg-white/10 rounded-xl border border-white/20 text-sm font-bold">
+              Atención Integral
+            </div>
+          </div>
+        </div>
+        
+        <div class="order-1 md:order-2 bg-white p-8 rounded-3xl shadow-xl">
+           <h3 class="text-slate-900 font-bold text-xl mb-6 text-center">Nuestro Propósito</h3>
+           <div class="space-y-6">
+              <div class="flex gap-4">
+                <div class="text-2xl">🌱</div>
+                <div>
+                  <h4 class="text-slate-900 font-bold">Inclusión Real</h4>
+                  <p class="text-slate-500 text-sm">Promovemos un entorno donde cada persona con TEA sea valorada.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="text-2xl">🛡️</div>
+                <div>
+                  <h4 class="text-slate-900 font-bold">Defensa de Derechos</h4>
+                  <p class="text-slate-500 text-sm">Aseguramos que las leyes se cumplan en beneficio de la comunidad.</p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div class="text-2xl">🎓</div>
+                <div>
+                  <h4 class="text-slate-900 font-bold">Capacitación Continua</h4>
+                  <p class="text-slate-500 text-sm">Herramientas prácticas para familias y profesionales.</p>
+                </div>
+              </div>
+           </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl font-bold text-slate-900 mb-4">¿Qué hacemos por ti?</h2>
+        <p class="text-slate-600 max-w-2xl mx-auto">
+          Ofrecemos una red de apoyo estructurada para guiarte en cada etapa del camino.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <Card className="p-4">
+          <Card.Content>
+            <div class="text-blue-600 text-3xl mb-4">🏠</div>
+            <Card.Title>Apoyo Mutuo</Card.Title>
+            <p class="text-slate-600 text-sm">Espacios de reunión para padres donde compartimos experiencias y estrategias de cuidado.</p>
+          </Card.Content>
+        </Card>
+
+        <Card className="p-4">
+          <Card.Content>
+            <div class="text-blue-600 text-3xl mb-4">📋</div>
+            <Card.Title>Gestión de Carnet</Card.Title>
+            <p class="text-slate-600 text-sm">Orientación en los procesos de calificación de discapacidad junto a las entidades de salud.</p>
+          </Card.Content>
+        </Card>
+
+        <Card className="p-4">
+          <Card.Content>
+            <div class="text-blue-600 text-3xl mb-4">📢</div>
+            <Card.Title>Concientización</Card.Title>
+            <p class="text-slate-600 text-sm">Campañas públicas y educativas para erradicar el estigma sobre el autismo.</p>
+          </Card.Content>
+        </Card>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="p-10 bg-orange-500 rounded-[3rem] text-white shadow-2xl shadow-orange-500/20">
+        <h2 class="text-3xl font-bold mb-6">¿Quieres ser parte de nuestra asociación?</h2>
+        <p class="text-orange-50 mb-10 text-lg">
+          Juntos somos más fuertes. Únete a APADA y accede a nuestra red de capacitación y apoyo.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/donaciones" class="px-8 py-4 bg-white text-orange-600 font-bold rounded-2xl hover:bg-slate-50 transition-colors">
+            Quiero Colaborar
+          </a>
+          <a href="https://wa.me/593996062600" class="px-8 py-4 bg-orange-600 text-white font-bold rounded-2xl border-2 border-orange-400 hover:bg-orange-700 transition-colors">
+            Contactar por WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

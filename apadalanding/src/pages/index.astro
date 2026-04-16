@@ -1,0 +1,209 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Hero } from '../components/sections/Hero';
+import { Card } from '../components/ui/Card';
+import { Button } from '../components/ui/Button';
+
+// 1. Pilares de la Fundación (Objetivos)
+const objetivos = [
+  {
+    titulo: "Conciencia y educación",
+    desc: "Organizamos actividades como caminatas y talleres para informar y conectar a la sociedad.",
+    icono: "🎨",
+    detalle: "Talleres y Encuentros"
+  },
+  {
+    titulo: "Asesoría legal",
+    desc: "Guiamos a las familias en temas de derechos y calificación de discapacidades con el MSP.",
+    icono: "⚖️",
+    detalle: "Respaldo Jurídico"
+  },
+  {
+    titulo: "Apoyo mutuo",
+    desc: "Espacios seguros donde las familias comparten experiencias y aprenden de la mano.",
+    icono: "🫂",
+    detalle: "Red de Familias"
+  }
+];
+
+// 2. Recursos Educativos (Grid de aprendizaje)
+const recursos = [
+  { titulo: "Canal de YouTube", desc: "Capacitaciones con expertos y doctores especializados.", link: "#", label: "Ver videos", icono: "📺", color: "bg-red-50 text-red-600" },
+  { titulo: "Marco Legal", desc: "Leyes y mecanismos que protegen nuestros derechos.", link: "/marco-legal", label: "Recursos Legales", icono: "📜", color: "bg-blue-50 text-blue-600" },
+  { titulo: "Recursos Educativos", desc: "Guías de estudio y adaptaciones curriculares.", link: "#", label: "Material de apoyo", icono: "📚", color: "bg-green-50 text-green-600" },
+  { titulo: "Podcast", desc: "Vivencias reales sobre el cuidado y el TEA.", link: "/podcast", label: "Escúchanos", icono: "🎙️", color: "bg-purple-50 text-purple-600" }
+];
+
+// 3. Eventos Destacados
+const eventos = [
+  { nombre: "Caminata por el autismo", fecha: "2 de abril", tag: "Participación", icono: "🚶‍♂️" },
+  { nombre: "Taller de pintura", fecha: "Expresión Artística", tag: "Enseñanza", icono: "🖌️" },
+  { nombre: "Trabajos Universitarios", fecha: "Universidad Central", tag: "Inclusión", icono: "🏫" }
+];
+
+// 4. Testimonios Reales
+const testimonios = [
+  {
+    nombre: "María López",
+    rol: "Mamá de un niño en el espectro",
+    texto: "Gracias a APADA pude entender mejor el autismo y conectar con mi hijo. Estos eventos cambiaron mi vida.",
+    estrellas: 5
+  },
+  {
+    nombre: "Juan Pérez",
+    rol: "Terapeuta Ocupacional",
+    texto: "La información compartida en las jornadas es invaluable. Es un espacio necesario para profesionales.",
+    estrellas: 5
+  }
+];
+---
+
+<MainLayout>
+  <Hero client:load />
+
+  <section class="py-24 bg-white relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-20">
+        <span class="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest mb-4">Nuestro Propósito</span>
+        <h2 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
+          Buscamos generar conciencia e <span class="text-blue-600 underline decoration-orange-400 decoration-4 underline-offset-8">inclusión real</span>.
+        </h2>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-10">
+        {objetivos.map(obj => (
+          <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/5 transition-all duration-500">
+            <div class="text-5xl mb-8 transform group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-300 inline-block">{obj.icono}</div>
+            <span class="block text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">{obj.detalle}</span>
+            <h3 class="text-2xl font-bold text-slate-900 mb-4">{obj.titulo}</h3>
+            <p class="text-slate-600 leading-relaxed text-sm md:text-base">{obj.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-slate-900 text-white rounded-[4rem] mx-4 my-8 overflow-hidden relative border-b-8 border-orange-500">
+    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] -mr-48 -mt-48"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-20 items-center">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold mb-8">Empoderamos a través del <span class="text-blue-400">conocimiento</span>.</h2>
+          <p class="text-slate-400 text-lg mb-10 leading-relaxed">
+            Brindamos herramientas prácticas para cuidadores y personas autistas mediante mecanismos legales, educativos y acompañamiento constante.
+          </p>
+          <Button variant="primary" size="lg">Explorar Biblioteca</Button>
+        </div>
+        
+        <div class="grid sm:grid-cols-2 gap-6">
+          {recursos.map(res => (
+            <a href={res.link} class="p-8 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 hover:border-white/20 transition-all group relative overflow-hidden">
+              <div class={`w-14 h-14 rounded-2xl ${res.color} flex items-center justify-center text-3xl mb-6 shadow-lg`}>
+                {res.icono}
+              </div>
+              <h4 class="font-bold text-xl mb-3">{res.titulo}</h4>
+              <p class="text-slate-400 text-xs mb-6 leading-relaxed">{res.desc}</p>
+              <div class="flex items-center text-sm font-bold text-blue-400 group-hover:text-blue-300">
+                {res.label} 
+                <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+              </div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-blue-50 rounded-[3rem] p-8 md:p-16 border border-blue-100 relative shadow-inner">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <div class="order-2 lg:order-1">
+             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-widest mb-6">
+                🎙️ Capítulo 2: Cuidadores
+             </div>
+             <h3 class="text-blue-900 text-lg font-bold mb-2">Más allá del Autismo</h3>
+             <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">Hablemos de cuidadores</h2>
+             <p class="text-slate-600 text-lg mb-8 leading-relaxed">
+                Exploramos el rol fundamental de quienes acompañan. Retos emocionales, físicos y sociales. <strong>Cuidar de tu bienestar es la base de todo.</strong>
+             </p>
+             <Button variant="secondary" size="lg">Escuchar Episodio</Button>
+          </div>
+          <div class="order-1 lg:order-2 flex justify-center">
+            <div class="relative">
+              <div class="absolute inset-0 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
+              <div class="relative w-72 h-72 bg-slate-900 rounded-[2.5rem] flex flex-col items-center justify-center shadow-2xl">
+                <span class="text-7xl mb-4">🎧</span>
+                <div class="flex gap-1 items-end h-8">
+                  {[1,2,3,4,5].map(() => <div class="w-1.5 bg-blue-500 rounded-full animate-[bounce_1s_infinite]"></div>)}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white text-center">
+    <div class="max-w-4xl mx-auto px-4">
+      <span class="text-orange-500 font-black tracking-[0.3em] uppercase text-xs mb-8 block">Recuerda</span>
+      <h2 class="text-4xl md:text-6xl font-black text-slate-900 leading-[1.1] mb-12 italic">
+        "La comunidad hace del autismo un camino de <span class="text-blue-600">inclusión</span> y apoyo mutuo"
+      </h2>
+      <div class="w-24 h-1.5 bg-blue-600 mx-auto rounded-full mb-12"></div>
+      <a href="https://wa.me/593996062600" class="text-2xl font-bold text-slate-800 hover:text-blue-600 transition-colors flex items-center justify-center gap-3 group">
+        Sé parte de APADA
+        <svg class="w-8 h-8 transform group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      </a>
+    </div>
+  </section>
+
+  <section class="py-24 bg-slate-50 border-y border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 italic">Lo que dice nuestra comunidad</h2>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10">
+        {testimonios.map(test => (
+          <div class="bg-white p-12 rounded-[3rem] shadow-sm border border-slate-100 relative group hover:shadow-xl transition-all">
+            <div class="absolute top-8 right-12 text-slate-100 text-8xl font-serif pointer-events-none group-hover:text-blue-50 transition-colors">“</div>
+            <div class="flex text-orange-400 mb-8">
+              {[...Array(test.estrellas)].map(() => (
+                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              ))}
+            </div>
+            <p class="text-xl text-slate-700 font-medium mb-10 leading-relaxed relative z-10 italic">"{test.texto}"</p>
+            <div class="flex items-center gap-5">
+              <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center font-bold text-white text-xl shadow-lg">
+                {test.nombre[0]}
+              </div>
+              <div>
+                <h4 class="font-bold text-slate-900 text-lg">{test.nombre}</h4>
+                <p class="text-sm text-slate-500 font-medium">{test.rol}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 bg-white">
+    <div class="max-w-5xl mx-auto px-4">
+      <div class="bg-gradient-to-br from-blue-600 to-blue-800 p-12 md:p-20 rounded-[4rem] text-white text-center shadow-2xl relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight relative z-10">¿Listo para marcar la diferencia?</h2>
+        <p class="text-blue-100 text-xl mb-12 max-w-2xl mx-auto relative z-10">Tu apoyo nos ayuda a seguir brindando recursos gratuitos y acompañamiento legal a cientos de familias.</p>
+        <div class="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
+          <Button variant="secondary" size="lg" className="!bg-white !text-blue-700 hover:!bg-blue-50">Unirme a la Asociación</Button>
+          <a href="/donaciones" class="bg-orange-500 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/40 transform hover:-translate-y-1">
+            Quiero Donar Ahora
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</MainLayout>

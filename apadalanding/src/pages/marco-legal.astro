@@ -1,0 +1,156 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Card } from '../components/ui/Card';
+import type { RecursoLegal } from '../core/types';
+import { CONTACT_INFO } from '../core/constants/navigation';
+
+// Datos estáticos de normativas (Única Fuente de Verdad para esta página)
+const normativas: RecursoLegal[] = [
+  {
+    id: "constitucion",
+    ley: "Constitución de la República del Ecuador",
+    descripcionBreve: "Sección Sexta: Personas con discapacidad. Garantiza los derechos a la educación inclusiva, salud integral y equiparación de oportunidades.",
+    linkDescarga: "#",
+    organismo: "Asamblea Nacional",
+    esVigente: true
+  },
+  {
+    id: "lod",
+    ley: "Ley Orgánica de Discapacidades (LOD)",
+    descripcionBreve: "Marco legal principal que asegura la prevención, atención e inclusión de las personas con discapacidad y sus familias.",
+    linkDescarga: "#",
+    organismo: "Asamblea Nacional",
+    esVigente: true
+  },
+  {
+    id: "reglamento-lod",
+    ley: "Reglamento a la Ley Orgánica de Discapacidades",
+    descripcionBreve: "Normas técnicas y procedimientos para la aplicación efectiva de la LOD en instituciones públicas y privadas.",
+    linkDescarga: "#",
+    organismo: "Asamblea Nacional",
+    esVigente: true
+  },
+  {
+    id: "acuerdo-educacion",
+    ley: "Normativa de Inclusión Educativa",
+    descripcionBreve: "Regulaciones para las adaptaciones curriculares y el respeto a la neurodiversidad en las aulas del sistema nacional de educación.",
+    linkDescarga: "#",
+    organismo: "Ministerio de Educación",
+    esVigente: true
+  },
+  {
+    id: "calificacion-msp",
+    ley: "Manual de Calificación de Discapacidad",
+    descripcionBreve: "Guía técnica oficial sobre los requisitos y pasos para obtener el carnet de discapacidad a través del sistema de salud pública.",
+    linkDescarga: "#",
+    organismo: "MSP",
+    esVigente: true
+  }
+];
+
+// Preparamos un mensaje predeterminado para WhatsApp
+const mensajeLegal = encodeURIComponent("Hola APADA, necesito información sobre apoyo y asesoría legal.");
+const whatsappLink = `https://wa.me/${CONTACT_INFO.phone.replace(/[^0-9]/g, '')}?text=${mensajeLegal}`;
+---
+
+<MainLayout 
+  title="Marco Legal y Derechos" 
+  description="Conoce las leyes y normativas vigentes en Ecuador que protegen y garantizan la inclusión de las personas con autismo."
+>
+  <section class="bg-slate-900 py-20 text-white relative border-b-8 border-orange-500">
+    <div class="absolute inset-0 opacity-10 bg-[url('/pattern.svg')]"></div>
+    
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+      <span class="inline-block py-1 px-3 rounded-full bg-blue-800 text-blue-200 text-sm font-semibold tracking-wider uppercase mb-6">
+        Espacios Seguros
+      </span>
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+        Derechos en el Autismo
+      </h1>
+      <p class="text-lg md:text-xl text-slate-300 leading-relaxed max-w-3xl mx-auto mb-10 text-balance">
+        En APADA del Ecuador, trabajamos para garantizar la inclusión y el respeto de los derechos de las personas con autismo. Aquí encontrarás información clave sobre leyes y normativas vigentes.
+      </p>
+      
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-8 py-4 text-base font-bold text-slate-900 bg-white hover:bg-slate-100 rounded-xl shadow-lg transition-transform transform hover:-translate-y-1"
+      >
+        <span class="mr-2 text-xl">⚖️</span>
+        Solicita apoyo legal
+      </a>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="mb-12 border-b border-slate-200 pb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <h2 class="text-3xl font-bold text-slate-900 mb-2">Normativas Principales</h2>
+          <p class="text-slate-600">
+            Revisa todos los recursos legales con los que cuentan los ecuatorianos para defender sus derechos.
+          </p>
+        </div>
+        <div class="flex-shrink-0 text-sm font-medium text-slate-500">
+          Documentos actualizados al {new Date().getFullYear()}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        {normativas.map((norma) => (
+          <Card hoverable className="h-full group">
+            <Card.Content className="flex flex-col h-full">
+              <div class="flex items-center justify-between mb-4">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider bg-blue-50 px-2 py-1 rounded">
+                  {norma.organismo}
+                </span>
+                {norma.esVigente && (
+                  <span class="flex items-center text-xs font-medium text-green-600">
+                    <span class="w-2 h-2 bg-green-500 rounded-full mr-1.5 animate-pulse"></span>
+                    Vigente
+                  </span>
+                )}
+              </div>
+              
+              <Card.Title className="text-lg md:text-xl group-hover:text-blue-700 transition-colors">
+                {norma.ley}
+              </Card.Title>
+              
+              <p class="text-slate-600 text-sm mt-3 mb-6 flex-grow leading-relaxed">
+                {norma.descripcionBreve}
+              </p>
+              
+              <a 
+                href={norma.linkDescarga}
+                class="inline-flex items-center text-sm font-bold text-blue-600 hover:text-blue-800 transition-colors mt-auto group-hover:underline"
+              >
+                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                Revisar documento
+              </a>
+            </Card.Content>
+          </Card>
+        ))}
+      </div>
+
+    </div>
+  </section>
+  
+  <section class="bg-blue-50 py-16">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h3 class="text-2xl font-bold text-slate-900 mb-4">¿Necesitas ayuda con un trámite específico?</h3>
+      <p class="text-slate-600 mb-8">
+        Nuestra asociación brinda acompañamiento a las familias en procesos como la calificación del carnet del MSP o la defensa de derechos escolares.
+      </p>
+      <a 
+        href={whatsappLink}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center justify-center px-6 py-3 text-sm font-bold text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md transition-colors"
+      >
+        Escríbenos para asesoría
+      </a>
+    </div>
+  </section>
+</MainLayout>
