@@ -1,12 +1,19 @@
 import React from "react";
 
-// --- Contenedor Principal ---
+// --- Interfaces ---
 interface CardProps {
   children: React.ReactNode;
   className?: string;
-  hoverable?: boolean; // Para activar animaciones si es una tarjeta clickeable
+  hoverable?: boolean;
 }
 
+interface CardImageProps {
+  src: string;
+  alt: string;
+  className?: string;
+}
+
+// --- Componente Principal ---
 export const Card = ({
   children,
   className = "",
@@ -25,13 +32,7 @@ export const Card = ({
   );
 };
 
-// --- Sub-componente: Imagen ---
-interface CardImageProps {
-  src: string;
-  alt: string;
-  className?: string;
-}
-
+// --- Subcomponentes ---
 Card.Image = ({ src, alt, className = "" }: CardImageProps) => (
   <div
     className={`w-full aspect-video overflow-hidden bg-slate-100 ${className}`}
@@ -44,7 +45,6 @@ Card.Image = ({ src, alt, className = "" }: CardImageProps) => (
   </div>
 );
 
-// --- Sub-componente: Contenido (Padding) ---
 Card.Content = ({
   children,
   className = "",
@@ -53,7 +53,6 @@ Card.Content = ({
   className?: string;
 }) => <div className={`p-6 flex-grow ${className}`}>{children}</div>;
 
-// --- Sub-componente: Título ---
 Card.Title = ({
   children,
   className = "",
@@ -68,7 +67,6 @@ Card.Title = ({
   </h3>
 );
 
-// --- Sub-componente: Footer (Para botones o fechas) ---
 Card.Footer = ({
   children,
   className = "",

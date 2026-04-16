@@ -3,17 +3,19 @@ import MainLayout from '../../layouts/MainLayout.astro';
 import { Card } from '../../components/ui/Card';
 import { blogService } from '../../services/content';
 
+// --- Logic & Data Fetching ---
 const posts = await blogService.getAllPosts();
 const featuredPost = posts[0];
 const remainingPosts = posts.slice(1);
 
-const formatearFecha = (fecha: Date | string) => {
-  return new Date(fecha).toLocaleDateString('es-EC', {
-    year: 'numeric', month: 'long', day: 'numeric'
+const formatDate = (date: Date | string) => {
+  return new Date(date).toLocaleDateString('es-EC', {
+    year: 'numeric', 
+    month: 'long', 
+    day: 'numeric'
   });
 };
 
-// Función para asignar colores a los tags
 const getTagColor = (tag: string) => {
   const colors: Record<string, string> = {
     'Legal': 'bg-red-100 text-red-700',
@@ -27,10 +29,15 @@ const getTagColor = (tag: string) => {
 ---
 
 <MainLayout title="Blog y Noticias">
+  {/* Header del Blog */}
   <section class="bg-white pt-20 pb-12 border-b border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <span class="text-blue-600 font-bold tracking-widest uppercase text-xs mb-4 block">Actualidad APADA</span>
-      <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6">Blog y <span class="text-blue-600">Recursos</span></h1>
+      <span class="text-blue-600 font-bold tracking-widest uppercase text-xs mb-4 block">
+        Actualidad APADA
+      </span>
+      <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6">
+        Blog y <span class="text-blue-600">Recursos</span>
+      </h1>
       <p class="text-lg text-slate-500 max-w-2xl leading-relaxed">
         Crónicas de nuestras luchas legales, convenios educativos y guías para la comunidad autista en Ecuador.
       </p>
@@ -40,6 +47,7 @@ const getTagColor = (tag: string) => {
   <section class="py-16 bg-slate-50 min-h-screen">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
+      {/* Artículo Destacado */}
       {featuredPost && (
         <div class="mb-16">
           <Card hoverable className="overflow-hidden !border-none shadow-2xl">
@@ -60,17 +68,18 @@ const getTagColor = (tag: string) => {
                 </p>
                 <div class="flex items-center justify-between mt-auto pt-6 border-t border-white/10">
                   <span class="font-bold">{featuredPost.author}</span>
-                  <span class="text-sm opacity-80">{formatearFecha(featuredPost.pubDate)}</span>
+                  <span class="text-sm opacity-80">{formatDate(featuredPost.pubDate)}</span>
                 </div>
               </div>
               <div class="bg-slate-200 min-h-[300px] flex items-center justify-center text-6xl">
-                 📰
+                📰
               </div>
             </div>
           </Card>
         </div>
       )}
 
+      {/* Grid de Artículos Restantes */}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {remainingPosts.map((post) => (
           <Card hoverable className="h-full flex flex-col group">
@@ -93,17 +102,23 @@ const getTagColor = (tag: string) => {
               
               <div class="mt-auto pt-6 border-t border-slate-50 flex justify-between items-center text-[11px] font-bold text-slate-400 uppercase tracking-widest">
                 <span>{post.author}</span>
-                <span>{formatearFecha(post.pubDate)}</span>
+                <span>{formatDate(post.pubDate)}</span>
               </div>
             </Card.Content>
           </Card>
         ))}
       </div>
 
+      {/* CTA para Colaboradores */}
       <div class="mt-20 p-12 bg-blue-100 rounded-[3rem] text-center">
         <h3 class="text-2xl font-bold text-blue-900 mb-4">¿Tienes una historia que contar?</h3>
-        <p class="text-blue-700 mb-8 max-w-xl mx-auto">Queremos dar voz a las familias y personas autistas. Si quieres colaborar con un artículo para nuestro blog, escríbenos.</p>
-        <a href="mailto:info@apadadelecuador.org" class="inline-block bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20">
+        <p class="text-blue-700 mb-8 max-w-xl mx-auto">
+          Queremos dar voz a las familias y personas autistas. Si quieres colaborar con un artículo para nuestro blog, escríbenos.
+        </p>
+        <a 
+          href="mailto:info@apadadelecuador.org" 
+          class="inline-block bg-blue-600 text-white px-8 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20"
+        >
           Contactar a Redacción
         </a>
       </div>

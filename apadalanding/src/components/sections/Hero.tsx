@@ -1,8 +1,8 @@
 export const Hero = () => {
   return (
     <section className="relative bg-white overflow-hidden">
-      {/* Fondo decorativo opcional (un patrón sutil o un degradado) */}
-      <div className="absolute inset-y-0 right-0 w-1/2 bg-blue-50/50 rounded-l-full -z-10 transform translate-x-1/3"></div>
+      {/* Fondo Decorativo */}
+      <div className="absolute inset-y-0 right-0 w-1/2 bg-blue-50/50 rounded-l-full -z-10 transform translate-x-1/3" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 md:pt-32 md:pb-32">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
@@ -40,11 +40,9 @@ export const Hero = () => {
             </div>
           </div>
 
-          {/* Columna de Imagen (Placeholder hasta que subas los assets) */}
+          {/* Columna de Imagen */}
           <div className="relative">
-            {/* Contenedor con aspect ratio para evitar saltos en la carga */}
             <div className="aspect-w-4 aspect-h-3 rounded-2xl overflow-hidden shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
-              {/* Aquí irá la imagen real de la comunidad. Usamos un div simulado por ahora */}
               <div className="w-full h-full bg-slate-200 flex items-center justify-center">
                 <span className="text-slate-400 font-medium">
                   [Imagen de Comunidad APADA]
@@ -52,7 +50,7 @@ export const Hero = () => {
               </div>
             </div>
 
-            {/* Tarjeta flotante de "impacto" (opcional, le da un toque muy pro) */}
+            {/* Tarjeta de Impacto */}
             <div className="absolute -bottom-6 -left-6 bg-white p-4 rounded-xl shadow-xl border border-slate-100 flex items-center gap-4 animate-bounce-slow">
               <div className="bg-green-100 p-3 rounded-full text-green-600">
                 <svg
@@ -66,7 +64,7 @@ export const Hero = () => {
                     strokeLinejoin="round"
                     strokeWidth="2"
                     d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                  ></path>
+                  />
                 </svg>
               </div>
               <div>

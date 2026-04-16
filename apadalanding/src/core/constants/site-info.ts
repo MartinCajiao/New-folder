@@ -1,19 +1,19 @@
-// --- Tipados Estrictos ---
+// --- Domain Interfaces ---
 
 export interface BankData {
-  titular: string;
-  titularLargo: string;
-  banco: string;
-  tipoCuenta: string;
-  numeroCuenta: string;
-  ruc: string;
-  emailComprobantes: string;
+  accountHolder: string;
+  longAccountHolder: string;
+  bankName: string;
+  accountType: string;
+  accountNumber: string;
+  taxId: string; // RUC
+  receiptEmail: string;
 }
 
 export interface ImpactMetric {
   id: string;
-  valor: string;
-  etiqueta: string;
+  value: string;
+  label: string;
 }
 
 export interface SiteMetadata {
@@ -25,7 +25,7 @@ export interface SiteMetadata {
   slogan: string;
 }
 
-// --- Constantes de la Fundación ---
+// --- Foundation Constants ---
 
 export const SITE_INFO: SiteMetadata = {
   name: "Asociación de Padres y Amigos para el Apoyo y la Defensa de los Derechos de las Personas con Autismo",
@@ -40,35 +40,35 @@ export const SITE_INFO: SiteMetadata = {
 };
 
 export const BANK_INFO: BankData = {
-  titular: "APADA del Ecuador",
-  titularLargo:
+  accountHolder: "APADA del Ecuador",
+  longAccountHolder:
     "Asociación de Padres y Amigos para el Apoyo y la Defensa de Personas Autistas APADA del Ecuador",
-  banco: "Banco Internacional",
-  tipoCuenta: "Cuenta Corriente",
-  numeroCuenta: "700634693",
-  ruc: "1792436648001",
-  emailComprobantes: "tesoreria@apadadelecuador.org",
+  bankName: "Banco Internacional",
+  accountType: "Cuenta Corriente",
+  accountNumber: "700634693",
+  taxId: "1792436648001",
+  receiptEmail: "tesoreria@apadadelecuador.org",
 };
 
 export const IMPACT_METRICS: ImpactMetric[] = [
   {
-    id: "eventos",
-    valor: "50+",
-    etiqueta: "Eventos gratuitos",
+    id: "events",
+    value: "50+",
+    label: "Eventos gratuitos",
   },
   {
-    id: "familias",
-    valor: "200+",
-    etiqueta: "Familias favorecidas",
+    id: "families",
+    value: "200+",
+    label: "Familias favorecidas",
   },
   {
-    id: "aliadas",
-    valor: "30",
-    etiqueta: "Organizaciones aliadas",
+    id: "partners",
+    value: "30",
+    label: "Organizaciones aliadas",
   },
   {
-    id: "voluntarios",
-    valor: "40+",
-    etiqueta: "Voluntarios",
+    id: "volunteers",
+    value: "40+",
+    label: "Voluntarios",
   },
 ];

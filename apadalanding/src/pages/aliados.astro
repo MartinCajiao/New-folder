@@ -1,30 +1,67 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { Card } from '../components/ui/Card';
-import type { Aliado } from '../core/types';
+import type { Partner } from '../core/types';
 
-// Datos de los aliados (esto podría venir de una API en el futuro, por ahora es estático)
-const aliados: Aliado[] = [
+// --- Partner Interface Extension ---
+interface ExtendedPartner extends Partner {
+  description: string;
+  logoSvg?: string; // Espacio para el código del SVG
+}
+
+// --- Partner Data ---
+const partners: ExtendedPartner[] = [
   {
-    nombre: "Universidad Central del Ecuador",
-    logoUrl: "/logos/uce.png", // Deberás subir esto a public/logos/
-    categoria: "Educativo",
-    webUrl: "https://www.uce.edu.ec"
+    name: "Universidad Andina Simón Bolívar",
+    description: "Brinda acceso a espacios académicos y colabora activamente en eventos comunitarios, promoviendo la construcción de conocimiento inclusivo desde la academia.",
+    logoUrl: "/logos/uasb.png",
+    category: "Educational",
+    webUrl: "https://www.uasb.edu.ec"
   },
   {
-    nombre: "Fe y Alegría Ecuador",
-    logoUrl: "/logos/fe-y-alegria.png", // Deberás subir esto a public/logos/
-    categoria: "Educativo",
+    name: "Fundación Amor Animal – AMA",
+    description: "Con actividades terapéuticas y de bienestar que integran la presencia de mascotas, esta fundación impulsa el vínculo emocional y brinda apoyo psicosocial.",
+    logoUrl: "/logos/ama.png",
+    category: "Animal Protection",
+    webUrl: "https://fundacionama.com"
+  },
+  {
+    name: "Embajada de Suiza en Ecuador",
+    description: "Respalda institucionalmente eventos clave de APADA y promueve los derechos humanos, aportando visibilidad internacional a nuestras iniciativas.",
+    // Ejemplo de SVG con currentColor para que cambie de color con Tailwind
+    logoSvg: `<svg viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><path d="M50 20V80M20 50H80" stroke="currentColor" stroke-width="15"/></svg>`,
+    category: "Embassy",
+    webUrl: "https://www.eda.admin.ch/quito"
+  },
+  {
+    name: "Universidad Politécnica Salesiana",
+    description: "A través de capacitaciones, voluntariado estudiantil y apoyo en talleres inclusivos, fortalece la formación profesional con un enfoque profundamente humano.",
+    logoUrl: "/logos/ups.png",
+    category: "Educational",
+    webUrl: "https://www.ups.edu.ec"
+  },
+  {
+    name: "Asociación Fe y Alegría Ecuador",
+    description: "Fortalecemos la inclusión educativa mediante evaluaciones especializadas, acompañamiento a familias y capacitación docente en sus unidades educativas.",
+    logoUrl: "/logos/fe-y-alegria.png",
+    category: "Educational",
     webUrl: "https://www.feyalegria.org.ec"
-  },
-  // Puedes agregar más objetos aquí siguiendo la misma estructura
+  }
+];
+
+const categories = [
+  "Unidades Educativas",
+  "Protección animal",
+  "Embajadas",
+  "Centros Médicos"
 ];
 ---
 
 <MainLayout 
   title="Nuestros Aliados" 
-  description="Conoce a las instituciones y organizaciones que fortalecen nuestro compromiso con la comunidad autista."
+  description="Conoce a las instituciones y organizaciones que fortalecen nuestro compromiso con la comunidad autista en Ecuador."
 >
+  {/* Hero Section */}
   <section class="bg-blue-50/40 border-b border-blue-100 py-16 md:py-24 relative overflow-hidden">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
       <span class="text-blue-700 font-bold tracking-wider uppercase text-sm mb-4 block">
@@ -34,53 +71,99 @@ const aliados: Aliado[] = [
         Juntos Hacemos la Diferencia
       </h1>
       <p class="text-lg md:text-xl text-slate-600 leading-relaxed mb-10">
-        En APADA creemos en el poder del trabajo en red. Gracias a nuestros aliados, podemos ampliar nuestro impacto, brindar recursos educativos, asesoría legal y actividades inclusivas para personas con autismo y sus familias. Cada institución aliada fortalece nuestro compromiso con la comunidad.
+        En APADA creemos en el poder del trabajo en red. Gracias a nuestros aliados, podemos ampliar nuestro impacto y brindar mejores recursos a la comunidad.
       </p>
       
+      <div class="flex flex-wrap justify-center gap-3 mb-10">
+        {categories.map((cat) => (
+          <span class="px-4 py-1.5 bg-white border border-blue-100 rounded-full text-xs font-bold text-blue-600 shadow-sm">
+            {cat}
+          </span>
+        ))}
+      </div>
+
       <a 
-        href="mailto:info@apadadelecuador.org?subject=Quiero%20ser%20aliado%20de%20APADA"
-        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-xl shadow-lg shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-0.5"
+        href="mailto:info@apadadelecuador.org?subject=Quiero%20ser%20aliado"
+        class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-xl shadow-lg shadow-orange-500/30 transition-all transform hover:-translate-y-0.5"
       >
         Quiero ser un aliado
       </a>
     </div>
   </section>
 
+  {/* Partners Grid */}
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl font-bold text-slate-900 mb-4">Nuestros Aliados</h2>
-        <p class="text-slate-600 max-w-2xl mx-auto">
-          Estas instituciones y organizaciones son parte esencial del impacto que logramos día a día en la vida de las personas con autismo y sus familias.
-        </p>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
-        {aliados.map((aliado) => (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {partners.map((partner) => (
           <a 
-            href={aliado.webUrl || '#'} 
-            target={aliado.webUrl ? "_blank" : "_self"}
-            rel={aliado.webUrl ? "noopener noreferrer" : ""}
-            class="block group outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-2xl"
+            href={partner.webUrl || '#'} 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="group block h-full"
           >
-            <Card hoverable className="h-full flex flex-col items-center justify-center p-8 bg-white border-slate-100 transition-all duration-300 group-hover:border-blue-200 group-hover:shadow-blue-900/5">
-              <div class="w-full aspect-[3/2] flex items-center justify-center overflow-hidden mb-4">
-                <img 
-                  src={aliado.logoUrl} 
-                  alt={`Logo de ${aliado.nombre}`} 
-                  class="max-h-24 w-auto object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:scale-105"
-                  onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
-                />
-                <div class="hidden text-center items-center justify-center w-full h-full text-slate-400 font-medium text-sm p-4 bg-slate-50 rounded-xl">
-                  {aliado.nombre}
-                </div>
+            <Card hoverable className="h-full flex flex-col p-8 border-slate-100 group-hover:border-blue-200 transition-all duration-300">
+              
+              {/* Logo Container (SVG or Image) */}
+              <div class="h-16 flex items-center mb-8 overflow-hidden">
+                {partner.logoSvg ? (
+                  <div 
+                    class="h-full w-auto text-slate-400 group-hover:text-blue-600 transition-colors duration-500 [&>svg]:h-full [&>svg]:w-auto" 
+                    set:html={partner.logoSvg} 
+                  />
+                ) : (
+                  <img 
+                    src={partner.logoUrl} 
+                    alt={`Logo de ${partner.name}`} 
+                    class="max-h-full max-w-[160px] object-contain grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+                  />
+                  <span class="hidden font-bold text-slate-300 text-xl">{partner.name}</span>
+                )}
               </div>
-              <span class="text-sm font-semibold text-slate-700 text-center line-clamp-2">
-                {aliado.nombre}
-              </span>
+              
+              <div class="flex-grow">
+                <span class="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em] mb-3 block">
+                  {partner.category}
+                </span>
+                <Card.Title className="text-xl mb-4 group-hover:text-blue-700 transition-colors">
+                  {partner.name}
+                </Card.Title>
+                <p class="text-slate-600 text-sm leading-relaxed line-clamp-4">
+                  {partner.description}
+                </p>
+              </div>
+
+              <div class="mt-8 pt-6 border-t border-slate-50 flex items-center text-xs font-bold text-blue-600">
+                Visitar sitio web
+                <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </div>
             </Card>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  {/* CTA Section */}
+  <section class="py-20 bg-slate-50">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <div class="bg-blue-600 rounded-[3rem] p-12 text-white shadow-2xl relative overflow-hidden">
+        <div class="relative z-10">
+          <h2 class="text-3xl font-bold mb-6">Sé parte de APADA</h2>
+          <p class="text-blue-100 text-lg mb-8">
+            ¿Tu organización busca generar un impacto social real? Unamos esfuerzos para construir un Ecuador más inclusivo.
+          </p>
+          <a 
+            href="/contacto" 
+            class="inline-block bg-white text-blue-600 px-8 py-4 rounded-2xl font-bold hover:bg-blue-50 transition-colors"
+          >
+            Contactar ahora
+          </a>
+        </div>
+        <div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -mr-32 -mt-32 blur-3xl"></div>
       </div>
     </div>
   </section>

@@ -1,25 +1,96 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
+import { SITE_INFO } from '../core/constants/site-info';
+import { Card } from '../components/ui/Card';
+
+// --- Agenda Data ---
+const agendaEvents = [
+  {
+    title: "Seminario «Autismo, Educación y Familia»",
+    location: "Auditorio Ministerio de Educación, Cultura y Deportes",
+    date: "31 de marzo, 1 y 2 de abril de 2026",
+    time: "08h30 a 13h00",
+    organizer: "ADACAPIA",
+    type: "Seminario",
+    color: "blue"
+  },
+  {
+    title: "Taller de Estrategias de trabajo con familias",
+    location: "Universidad San Francisco de Quito",
+    date: "10 Abril 2026",
+    time: "09h00 am",
+    organizer: "APADA, Fundamedios y Consejo de Comunicación",
+    type: "Taller",
+    color: "orange"
+  },
+  {
+    title: "Jornadas de Charlas y Actividades FF.AA.",
+    location: "Hospital de Especialidades de las Fuerzas Armadas No. 1",
+    date: "17 Abril 2026",
+    time: "09h00 am",
+    description: "Demostración de terapias y aclaración de dudas para menores de 5 años.",
+    organizer: "Hospital FF.AA.",
+    type: "Charla",
+    color: "blue"
+  },
+  {
+    title: "Jornadas Académicas “Autismo: Diagnóstico e Intervención”",
+    location: "Pontificia Universidad Católica del Ecuador",
+    date: "25 Abril 2026",
+    time: "08h30 am",
+    organizer: "PUCE",
+    type: "Académico",
+    color: "purple"
+  },
+  {
+    title: "Marcha de las familias TEA del sur de Quito",
+    location: "Concentración: Estadio del Aucas",
+    date: "26 Abril 2026",
+    time: "08h30 am",
+    organizer: "APADA Chimborazo",
+    type: "Marcha",
+    color: "orange"
+  },
+  {
+    title: "Charla sobre el Autismo y Familia",
+    location: "Universidad San Francisco de Quito",
+    date: "29 Abril 2026",
+    time: "13h00 pm",
+    organizer: "USFQ",
+    type: "Integración",
+    color: "blue"
+  },
+  {
+    title: "Caminata por la visibilización del Autismo",
+    location: "Av. Amazonas y Av. Patria",
+    date: "5 Abril 2026",
+    time: "08h30 am",
+    organizer: "ADACAPIA",
+    type: "Caminata",
+    color: "green"
+  }
+];
 ---
 
 <MainLayout 
   title="Día Mundial de Concienciación sobre el Autismo" 
-  description="El 2 de abril promovemos la empatía, rompemos mitos y escuchamos a las personas autistas. Nada sobre nosotros sin nosotros."
+  description="Agenda oficial de actividades y caminata por el autismo 2026 en Ecuador. Juntos por la inclusión."
 >
+  {/* Hero Section */}
   <section class="bg-blue-900 text-white py-20 md:py-32 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent"></div>
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
     
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
       <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight mb-8">
         Escuchar es incluir
       </h1>
-      <p class="text-xl md:text-2xl text-blue-100 font-medium leading-relaxed max-w-3xl mx-auto mb-12 text-balance">
-        Este año te invitamos a escuchar activamente. Escuchar sin juzgar. Escuchar con respeto. Escuchar a las personas autistas cuando nos cuentan cómo ven, sienten y viven el mundo.
+      <p class="text-xl md:text-2xl text-blue-100 font-medium leading-relaxed max-w-3xl mx-auto mb-12">
+        Este año te invitamos a escuchar activamente. Escuchar sin juzgar. Escuchar con respeto.
       </p>
       
       <blockquote class="bg-blue-800/60 border-l-4 border-orange-500 p-6 md:p-8 rounded-r-2xl inline-block text-left shadow-xl backdrop-blur-sm">
         <p class="text-2xl md:text-3xl font-bold text-white mb-4 italic">
-          “Nada sobre nosotros sin nosotros.”
+          “{SITE_INFO.slogan}”
         </p>
         <footer class="text-blue-200 font-semibold uppercase tracking-wider text-sm">
           — Principio del movimiento autista internacional
@@ -28,32 +99,121 @@ import MainLayout from '../layouts/MainLayout.astro';
     </div>
   </section>
 
+  {/* Info Principal y Marcha Central */}
   <section class="py-20 bg-white">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      <div class="prose prose-lg mx-auto text-slate-700 mb-16">
-        <p class="text-xl md:text-2xl font-medium text-slate-900 mb-6 text-balance">
-          El 2 de abril fue proclamado por la ONU como el Día Mundial de Concienciación sobre el Autismo.
-        </p>
-        <p class="leading-relaxed">
-          Esta fecha busca generar empatía, romper mitos y promover el respeto hacia las personas autistas. <strong>No es un día para celebrar una condición. Es un día para actuar con conciencia y compromiso.</strong>
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
+        <div class="prose prose-lg text-slate-700">
+          <h2 class="text-3xl font-bold text-slate-900 mb-6">Por la autonomía y los derechos</h2>
+          <p>
+            El 2 de abril fue proclamado por la ONU como el Día Mundial de Concienciación sobre el Autismo. Esta fecha busca generar empatía, romper mitos y promover el respeto.
+          </p>
+          <p class="font-bold text-slate-900">
+            No es un día para celebrar una condición. Es un día para actuar con conciencia y compromiso.
+          </p>
+        </div>
+
+        {/* Highlight: Caminata Principal */}
+        <div class="bg-slate-900 rounded-[2.5rem] p-8 md:p-10 text-white shadow-2xl relative overflow-hidden border-b-8 border-orange-500">
+          <div class="relative z-10">
+            <span class="text-orange-400 font-bold uppercase tracking-widest text-xs mb-4 block">Evento Central</span>
+            <h3 class="text-2xl md:text-3xl font-bold mb-8">Caminata por la Visibilización</h3>
+            
+            <div class="space-y-6 mb-10">
+              <div class="flex items-start gap-4">
+                <span class="text-2xl">📅</span>
+                <div>
+                  <p class="text-slate-400 text-sm uppercase font-bold">Fecha</p>
+                  <p class="font-semibold">6 de abril del 2026</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="text-2xl">📍</span>
+                <div>
+                  <p class="text-slate-400 text-sm uppercase font-bold">Lugar de Concentración</p>
+                  <p class="font-semibold text-balance">Arco de la Circasiana (Parque el Ejido) Av. Patria y Av. Amazonas</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-4">
+                <span class="text-2xl">⏰</span>
+                <div>
+                  <p class="text-slate-400 text-sm uppercase font-bold">Hora</p>
+                  <p class="font-semibold">09h00 am</p>
+                </div>
+              </div>
+            </div>
+
+            <a href="/contacto" class="w-full inline-flex items-center justify-center px-8 py-4 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 transition-all shadow-lg shadow-orange-500/30">
+              Quiero unirme a la caminata
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Agenda Oficial */}
+      <div class="text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-black text-slate-900 mb-4">Agenda Oficial 2026</h2>
+        <p class="text-slate-600 max-w-2xl mx-auto">
+          Te invitamos a participar en nuestras actividades educativas, simbólicas y comunitarias. Elige cómo quieres sumarte.
         </p>
       </div>
 
-      <div class="p-8 md:p-12 bg-slate-50 rounded-3xl border border-slate-100 shadow-sm max-w-2xl mx-auto">
-        <h2 class="text-2xl font-bold text-slate-900 mb-6">Acompáñanos a marchar por la inclusión</h2>
-        
-        <a 
-          href="#link-al-formulario-o-whatsapp" 
-          class="inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-xl shadow-lg shadow-orange-500/30 transition-all duration-300 transform hover:-translate-y-1 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:ring-offset-2"
-        >
-          Quiero unirme a la caminata
-          <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-        </a>
-        
-        <p class="text-sm text-slate-500 mt-4">
-          Únete a nosotros. Pronto publicaremos los detalles de la ruta y horarios.
-        </p>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {agendaEvents.map((event) => (
+          <Card className="h-full border-slate-100 hover:shadow-xl transition-all flex flex-col">
+            <Card.Content className="flex flex-col h-full">
+              <div class="flex items-center justify-between mb-4">
+                <span class={`px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest ${event.color === 'orange' ? 'bg-orange-100 text-orange-700' : 'bg-blue-100 text-blue-700'}`}>
+                  {event.type}
+                </span>
+                <span class="text-xs font-bold text-slate-400">2026</span>
+              </div>
+              
+              <Card.Title className="text-xl mb-4 leading-tight">{event.title}</Card.Title>
+              
+              <div class="space-y-3 mb-6 flex-grow">
+                <div class="flex items-start gap-2 text-sm text-slate-600">
+                  <span class="grayscale">📍</span>
+                  <span class="leading-snug">{event.location}</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-900 font-bold">
+                  <span class="grayscale">🗓️</span>
+                  <span>{event.date}</span>
+                </div>
+                <div class="flex items-center gap-2 text-sm text-slate-600">
+                  <span class="grayscale">⏰</span>
+                  <span>{event.time}</span>
+                </div>
+              </div>
+
+              <div class="pt-4 border-t border-slate-50 mt-auto">
+                <p class="text-[10px] text-slate-400 uppercase font-bold mb-3">Organiza: {event.organizer}</p>
+                <a href="/contacto" class="text-blue-600 font-bold text-sm hover:text-blue-800 flex items-center gap-1 group">
+                  Más información
+                  <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                </a>
+              </div>
+            </Card.Content>
+          </Card>
+        ))}
       </div>
+    </div>
+  </section>
+
+  {/* Footer de Acción */}
+  <section class="py-20 bg-slate-50 border-t border-slate-200">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h3 class="text-2xl font-bold text-slate-900 mb-6">¿Tienes dudas sobre las actividades?</h3>
+      <p class="text-slate-600 mb-8">
+        Escríbenos directamente por WhatsApp para confirmar tu asistencia o solicitar detalles sobre accesibilidad en los eventos.
+      </p>
+      <a 
+        href="https://wa.me/593996062600" 
+        target="_blank"
+        class="inline-flex items-center justify-center px-10 py-4 bg-green-500 text-white font-bold rounded-2xl hover:bg-green-600 shadow-lg shadow-green-500/20 transition-all transform hover:-translate-y-1"
+      >
+        Contactar por WhatsApp
+      </a>
     </div>
   </section>
 </MainLayout>

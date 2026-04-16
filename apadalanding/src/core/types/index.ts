@@ -3,68 +3,67 @@
 // ==========================================
 
 // --- 1. Aliados Estratégicos ---
-export type CategoriaAliado =
-  | "Educativo"
-  | "Gubernamental"
-  | "Privado"
-  | "Salud"
-  | "ONG";
+export type PartnerCategory =
+  | "Educational"
+  | "Government"
+  | "Private"
+  | "Health"
+  | "NGO";
 
-export interface Aliado {
-  nombre: string;
+export interface Partner {
+  name: string;
   logoUrl: string;
   webUrl?: string;
-  categoria: CategoriaAliado;
+  category: PartnerCategory;
 }
 
 // --- 2. Marco Legal ---
-export type OrganismoLegal =
-  | "Asamblea Nacional"
+export type LegalBody =
+  | "National Assembly"
   | "MSP"
-  | "Ministerio de Educación"
+  | "Ministry of Education"
   | "MIES"
-  | "Otro";
+  | "Other";
 
-export interface RecursoLegal {
+export interface LegalResource {
   id: string;
-  ley: string;
-  descripcionBreve: string;
-  linkDescarga: string;
-  organismo: OrganismoLegal;
-  esVigente: boolean;
+  law: string;
+  shortDescription: string;
+  downloadLink: string;
+  agency: LegalBody;
+  isActive: boolean;
 }
 
 // --- 3. Podcast "Voces que inspiran" ---
-export interface EpisodioPodcast {
+export interface PodcastEpisode {
   id: string;
-  numero: number;
-  titulo: string;
-  descripcion: string;
-  invitado?: string;
-  audioUrl?: string; // Enlace al embed de Spotify o archivo de audio directo
-  fechaPublicacion: Date | string;
-  duracionMinutos?: number;
+  episodeNumber: number;
+  title: string;
+  description: string;
+  guest?: string;
+  audioUrl?: string;
+  publishDate: Date | string;
+  durationMinutes?: number;
 }
 
 // --- 4. Nosotros / Actividades ---
-// Usamos un Enum para evitar typos al clasificar los servicios de la fundación
-export enum CategoriaActividad {
-  SALUD = "Atención Integral en Salud",
-  LEGAL = "Defensa de Derechos",
-  APOYO = "Apoyo Mutuo",
-  EDUCACION = "Capacitación y Conciencia",
-  EVENTOS = "Eventos con propósito",
+export enum ActivityCategory {
+  HEALTH = "HEALTH",
+  LEGAL = "LEGAL",
+  SUPPORT = "SUPPORT",
+  EDUCATION = "EDUCATION",
+  EVENTS = "EVENTS",
 }
 
-export interface Actividad {
-  titulo: string;
-  descripcion: string;
-  categoria: CategoriaActividad;
-  iconoRef?: string; // Referencia a un ícono (ej. 'heart', 'scale')
+export interface Activity {
+  title: string;
+  description: string;
+  category: ActivityCategory;
+  iconRef?: string;
 }
 
-// --- 5. Blog y Noticias (Para los Content Collections de Astro) ---
-export interface ArticuloBlog {
+// --- 5. Blog y Noticias ---
+export interface BlogPost {
   title: string;
   pubDate: Date;
   description: string;

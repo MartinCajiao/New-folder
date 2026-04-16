@@ -2,12 +2,50 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import { Card } from '../components/ui/Card';
 import { SITE_INFO } from '../core/constants/site-info';
+
+// --- Page Data ---
+const organizationValues = [
+  {
+    icon: "🌱",
+    title: "Inclusión Real",
+    description: "Promovemos un entorno donde cada persona con TEA sea valorada."
+  },
+  {
+    icon: "🛡️",
+    title: "Defensa de Derechos",
+    description: "Aseguramos que las leyes se cumplan en beneficio de la comunidad."
+  },
+  {
+    icon: "🎓",
+    title: "Capacitación Continua",
+    description: "Herramientas prácticas para familias y profesionales."
+  }
+];
+
+const services = [
+  {
+    icon: "🏠",
+    title: "Apoyo Mutuo",
+    description: "Espacios de reunión para padres donde compartimos experiencias y estrategias de cuidado."
+  },
+  {
+    icon: "📋",
+    title: "Gestión de Carnet",
+    description: "Orientación en los procesos de calificación de discapacidad junto a las entidades de salud."
+  },
+  {
+    icon: "📢",
+    title: "Concientización",
+    description: "Campañas públicas y educativas para erradicar el estigma sobre el autismo."
+  }
+];
 ---
 
 <MainLayout 
   title="Sobre Nosotros" 
   description="Conoce la historia de APADA del Ecuador: una asociación de padres comprometidos con el bienestar y los derechos de las personas con autismo."
 >
+  {/* Introducción / Hero de Nosotros */}
   <section class="relative py-20 md:py-32 bg-white overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid lg:grid-cols-2 gap-12 items-center">
@@ -35,12 +73,13 @@ import { SITE_INFO } from '../core/constants/site-info';
               [Foto Comunidad APADA]
             </div>
           </div>
-          <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl -z-10"></div>
+          <div class="absolute -bottom-6 -right-6 w-64 h-64 bg-orange-500/10 rounded-full blur-3xl -z-10" />
         </div>
       </div>
     </div>
   </section>
 
+  {/* Compromiso y Valores */}
   <section class="py-20 bg-slate-900 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-12 items-center">
@@ -67,33 +106,22 @@ import { SITE_INFO } from '../core/constants/site-info';
         <div class="order-1 md:order-2 bg-white p-8 rounded-3xl shadow-xl">
            <h3 class="text-slate-900 font-bold text-xl mb-6 text-center">Nuestro Propósito</h3>
            <div class="space-y-6">
-              <div class="flex gap-4">
-                <div class="text-2xl">🌱</div>
-                <div>
-                  <h4 class="text-slate-900 font-bold">Inclusión Real</h4>
-                  <p class="text-slate-500 text-sm">Promovemos un entorno donde cada persona con TEA sea valorada.</p>
+              {organizationValues.map((value) => (
+                <div class="flex gap-4">
+                  <div class="text-2xl">{value.icon}</div>
+                  <div>
+                    <h4 class="text-slate-900 font-bold">{value.title}</h4>
+                    <p class="text-slate-500 text-sm">{value.description}</p>
+                  </div>
                 </div>
-              </div>
-              <div class="flex gap-4">
-                <div class="text-2xl">🛡️</div>
-                <div>
-                  <h4 class="text-slate-900 font-bold">Defensa de Derechos</h4>
-                  <p class="text-slate-500 text-sm">Aseguramos que las leyes se cumplan en beneficio de la comunidad.</p>
-                </div>
-              </div>
-              <div class="flex gap-4">
-                <div class="text-2xl">🎓</div>
-                <div>
-                  <h4 class="text-slate-900 font-bold">Capacitación Continua</h4>
-                  <p class="text-slate-500 text-sm">Herramientas prácticas para familias y profesionales.</p>
-                </div>
-              </div>
+              ))}
            </div>
         </div>
       </div>
     </div>
   </section>
 
+  {/* Servicios y Apoyo */}
   <section class="py-24 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-16">
@@ -104,33 +132,20 @@ import { SITE_INFO } from '../core/constants/site-info';
       </div>
 
       <div class="grid md:grid-cols-3 gap-8">
-        <Card className="p-4">
-          <Card.Content>
-            <div class="text-blue-600 text-3xl mb-4">🏠</div>
-            <Card.Title>Apoyo Mutuo</Card.Title>
-            <p class="text-slate-600 text-sm">Espacios de reunión para padres donde compartimos experiencias y estrategias de cuidado.</p>
-          </Card.Content>
-        </Card>
-
-        <Card className="p-4">
-          <Card.Content>
-            <div class="text-blue-600 text-3xl mb-4">📋</div>
-            <Card.Title>Gestión de Carnet</Card.Title>
-            <p class="text-slate-600 text-sm">Orientación en los procesos de calificación de discapacidad junto a las entidades de salud.</p>
-          </Card.Content>
-        </Card>
-
-        <Card className="p-4">
-          <Card.Content>
-            <div class="text-blue-600 text-3xl mb-4">📢</div>
-            <Card.Title>Concientización</Card.Title>
-            <p class="text-slate-600 text-sm">Campañas públicas y educativas para erradicar el estigma sobre el autismo.</p>
-          </Card.Content>
-        </Card>
+        {services.map((service) => (
+          <Card className="p-4">
+            <Card.Content>
+              <div class="text-blue-600 text-3xl mb-4">{service.icon}</div>
+              <Card.Title>{service.title}</Card.Title>
+              <p class="text-slate-600 text-sm">{service.description}</p>
+            </Card.Content>
+          </Card>
+        ))}
       </div>
     </div>
   </section>
 
+  {/* CTA Asociación */}
   <section class="py-20">
     <div class="max-w-4xl mx-auto px-4 text-center">
       <div class="p-10 bg-orange-500 rounded-[3rem] text-white shadow-2xl shadow-orange-500/20">

@@ -1,45 +1,44 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { Card } from '../components/ui/Card';
-import type { EpisodioPodcast } from '../core/types';
+import type { PodcastEpisode } from '../core/types';
 
-// Datos estáticos de los episodios (En el futuro esto podría venir de un CMS o del RSS de Spotify)
-const episodios: EpisodioPodcast[] = [
+// --- Podcast Data ---
+const episodes: PodcastEpisode[] = [
   {
     id: "ep-03",
-    numero: 3,
-    titulo: "El diagnóstico en la etapa adulta",
-    descripcion: "Conversamos con adultos autistas sobre cómo fue recibir su diagnóstico tardío y cómo esto transformó su perspectiva de vida.",
-    invitado: "María José, Activista Autista",
-    fechaPublicacion: "2026-04-10",
-    duracionMinutos: 45,
+    number: 3,
+    title: "El diagnóstico en la etapa adulta",
+    description: "Conversamos con adultos autistas sobre cómo fue recibir su diagnóstico tardío y cómo esto transformó su perspectiva de vida.",
+    guest: "María José, Activista Autista",
+    publishedAt: "2026-04-10",
+    durationMinutes: 45,
     audioUrl: "#"
   },
   {
     id: "ep-02",
-    numero: 2,
-    titulo: "El rol fundamental de los cuidadores",
-    descripcion: "Exploramos las estrategias de autocuidado para padres y familiares, porque para cuidar bien, primero debemos estar bien.",
-    invitado: "Dra. Elena Ruiz, Psicóloga Clínica",
-    fechaPublicacion: "2026-03-25",
-    duracionMinutos: 38,
+    number: 2,
+    title: "El rol fundamental de los cuidadores",
+    description: "Exploramos las estrategias de autocuidado para padres y familiares, porque para cuidar bien, primero debemos estar bien.",
+    guest: "Dra. Elena Ruiz, Psicóloga Clínica",
+    publishedAt: "2026-03-25",
+    durationMinutes: 38,
     audioUrl: "#"
   },
   {
     id: "ep-01",
-    numero: 1,
-    titulo: "Marco Legal y Derechos en Ecuador",
-    descripcion: "Una guía paso a paso sobre cómo tramitar el carnet del MSP y cómo hacer valer los derechos educativos en las escuelas.",
-    fechaPublicacion: "2026-03-10",
-    duracionMinutos: 52,
+    number: 1,
+    title: "Marco Legal y Derechos en Ecuador",
+    description: "Una guía paso a paso sobre cómo tramitar el carnet del MSP y cómo hacer valer los derechos educativos en las escuelas.",
+    publishedAt: "2026-03-10",
+    durationMinutes: 52,
     audioUrl: "#"
   }
 ];
 
-// Función para formatear fechas de forma legible
-const formatearFecha = (fechaString: string | Date) => {
-  const opciones: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
-  return new Date(fechaString).toLocaleDateString('es-EC', opciones);
+const formatDate = (dateString: string | Date) => {
+  const options: Intl.DateTimeFormatOptions = { year: 'numeric', month: 'long', day: 'numeric' };
+  return new Date(dateString).toLocaleDateString('es-EC', options);
 };
 ---
 
@@ -47,14 +46,15 @@ const formatearFecha = (fechaString: string | Date) => {
   title="Podcast | Voces que Inspiran" 
   description="Escucha nuestro podcast sobre autismo. Conversaciones reales, historias inspiradoras y consejos de expertos y familias en Ecuador."
 >
+  {/* Hero / Header con Ecualizador Animado */}
   <section class="bg-blue-900 text-white py-20 relative overflow-hidden">
     <div class="absolute inset-0 opacity-20 flex items-center justify-center gap-2">
-      <div class="w-2 h-32 bg-blue-400 rounded-full animate-pulse"></div>
-      <div class="w-2 h-64 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.2s"></div>
-      <div class="w-2 h-40 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.4s"></div>
-      <div class="w-2 h-80 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.1s"></div>
-      <div class="w-2 h-48 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
-      <div class="w-2 h-24 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.3s"></div>
+      <div class="w-2 h-32 bg-blue-400 rounded-full animate-pulse" />
+      <div class="w-2 h-64 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.2s" />
+      <div class="w-2 h-40 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.4s" />
+      <div class="w-2 h-80 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.1s" />
+      <div class="w-2 h-48 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.5s" />
+      <div class="w-2 h-24 bg-blue-400 rounded-full animate-pulse" style="animation-delay: 0.3s" />
     </div>
     
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
@@ -70,30 +70,35 @@ const formatearFecha = (fechaString: string | Date) => {
 
       <div class="mt-10 flex flex-wrap justify-center gap-4">
         <a href="#spotify" class="flex items-center px-6 py-3 bg-[#1DB954] text-white font-bold rounded-full hover:bg-[#1ed760] transition-colors shadow-lg">
-          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15.001 10.5 18.66 12.72c.36.18.54.84.3 1.32zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/></svg>
+          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.24 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15.001 10.5 18.66 12.72c.36.18.54.84.3 1.32zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.6.18-1.2.72-1.38 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+          </svg>
           Spotify
         </a>
         <a href="#youtube" class="flex items-center px-6 py-3 bg-[#FF0000] text-white font-bold rounded-full hover:bg-[#ff3333] transition-colors shadow-lg">
-          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <svg class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+          </svg>
           YouTube
         </a>
       </div>
     </div>
   </section>
 
+  {/* Listado de Episodios */}
   <section class="py-20 bg-slate-50">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="mb-10 flex items-center justify-between border-b border-slate-200 pb-4">
         <h2 class="text-2xl font-bold text-slate-900">Últimos Episodios</h2>
-        <span class="text-sm font-medium text-slate-500">{episodios.length} episodios publicados</span>
+        <span class="text-sm font-medium text-slate-500">{episodes.length} episodios publicados</span>
       </div>
 
       <div class="space-y-6">
-        {episodios.map((ep) => (
+        {episodes.map((episode) => (
           <Card hoverable className="overflow-hidden flex flex-col sm:flex-row">
             <div class="sm:w-48 bg-blue-100 flex-shrink-0 flex flex-col items-center justify-center p-6 border-r border-slate-100">
-              <span class="text-blue-500 font-black text-5xl opacity-50 mb-2">#{ep.numero}</span>
+              <span class="text-blue-500 font-black text-5xl opacity-50 mb-2">#{episode.number}</span>
               <span class="text-sm font-bold text-blue-800 uppercase tracking-wide">Episodio</span>
             </div>
             
@@ -101,34 +106,36 @@ const formatearFecha = (fechaString: string | Date) => {
               <Card.Content className="!pb-2">
                 <div class="flex justify-between items-start mb-2">
                   <span class="text-xs font-semibold text-slate-400 bg-slate-100 px-2 py-1 rounded">
-                    {formatearFecha(ep.fechaPublicacion)}
+                    {formatDate(episode.publishedAt)}
                   </span>
                   <span class="text-xs font-medium text-slate-500 flex items-center">
-                    ⏱️ {ep.duracionMinutos} min
+                    ⏱️ {episode.durationMinutes} min
                   </span>
                 </div>
                 
                 <Card.Title className="!text-xl mt-2 group-hover:text-blue-700 transition-colors">
-                  {ep.titulo}
+                  {episode.title}
                 </Card.Title>
                 
                 <p class="text-slate-600 text-sm mt-2 leading-relaxed">
-                  {ep.descripcion}
+                  {episode.description}
                 </p>
 
-                {ep.invitado && (
+                {episode.guest && (
                   <div class="mt-4 inline-flex items-center bg-orange-50 text-orange-700 text-xs font-bold px-3 py-1.5 rounded-full">
-                    🎙️ Invitado: {ep.invitado}
+                    🎙️ Invitado: {episode.guest}
                   </div>
                 )}
               </Card.Content>
               
               <Card.Footer className="bg-white border-t-0 flex justify-end">
                 <a 
-                  href={ep.audioUrl}
+                  href={episode.audioUrl}
                   class="inline-flex items-center px-6 py-2.5 bg-blue-600 text-white text-sm font-bold rounded-xl hover:bg-blue-700 transition-colors transform hover:-translate-y-0.5 shadow-md shadow-blue-600/20"
                 >
-                  <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path></svg>
+                  <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd" />
+                  </svg>
                   Escuchar Episodio
                 </a>
               </Card.Footer>

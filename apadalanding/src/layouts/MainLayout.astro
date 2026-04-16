@@ -1,30 +1,22 @@
 ---
-// Importamos los estilos globales (Tailwind + Custom CSS)
 import '../styles/global.css';
-
-// Importamos la fuente de verdad para el SEO
 import { SITE_INFO } from '../core/constants/site-info';
-
-// Importamos los componentes de React compartidos
 import { Navbar } from '../components/shared/Navbar';
 import { Footer } from '../components/shared/Footer';
 
-// Definimos el contrato de las props que puede recibir este Layout
 interface Props {
   title?: string;
   description?: string;
   image?: string;
 }
 
-// Extraemos las props, usando la información global como respaldo (fallback)
 const { 
   title = SITE_INFO.shortName, 
   description = SITE_INFO.description,
-  image = '/og-image.jpg' // Imagen por defecto para cuando compartan el link
+  image = '/og-image.jpg' 
 } = Astro.props;
 
-// Construimos el título dinámico para la pestaña del navegador
-const pageTitle = title === SITE_INFO.shortName 
+const documentTitle = title === SITE_INFO.shortName 
   ? `${SITE_INFO.shortName} | ${SITE_INFO.slogan}` 
   : `${title} | ${SITE_INFO.shortName}`;
 ---
@@ -36,23 +28,24 @@ const pageTitle = title === SITE_INFO.shortName
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     
-    <title>{pageTitle}</title>
+    <title>{documentTitle}</title>
     <meta name="description" content={description} />
     <meta name="author" content={SITE_INFO.name} />
     
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={pageTitle} />
+    <meta property="og:title" content={documentTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={new URL(image, Astro.url)} />
     <meta property="og:site_name" content={SITE_INFO.name} />
 
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:title" content={pageTitle} />
+    <meta property="twitter:title" content={documentTitle} />
     <meta property="twitter:description" content={description} />
     <meta property="twitter:image" content={new URL(image, Astro.url)} />
   </head>
   
   <body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+    {/* Navbar interactivo para móviles */}
     <Navbar client:load />
 
     <main class="flex-grow flex flex-col">

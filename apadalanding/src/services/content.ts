@@ -1,6 +1,7 @@
-import type { ArticuloBlog } from "../core/types";
+import type { BlogPost } from "../core/types";
 
-const MOCK_POSTS: (ArticuloBlog & { id: string })[] = [
+// --- Mock Data ---
+const MOCK_POSTS: (BlogPost & { id: string })[] = [
   {
     id: "aptitudes-prosociales-2026",
     title:
@@ -55,17 +56,39 @@ const MOCK_POSTS: (ArticuloBlog & { id: string })[] = [
     isDraft: false,
   },
   {
+    id: "educacion-inclusion-ibarra",
+    title:
+      "Educación e Inclusión: Casos que evidencian falencias en el sistema",
+    pubDate: new Date("2025-02-10"),
+    description:
+      "Analizamos incidentes recientes en Ibarra que ponen de manifiesto la falta de preparación docente y los prejuicios sociales que persisten en el sistema educativo.",
+    author: "Redacción APADA",
+    tags: ["Educación", "Derechos"],
+    isDraft: false,
+  },
+  {
+    id: "panorama-general-ecuador",
+    title: "El Autismo en Ecuador: Panorama General y Prevalencia",
+    pubDate: new Date("2025-02-10"),
+    description:
+      "A pesar de los avances, el conocimiento sobre el autismo sigue siendo limitado. Analizamos las cifras de prevalencia y las barreras que enfrentan las familias.",
+    author: "Investigación APADA",
+    tags: ["Estadísticas", "Comunidad"],
+    isDraft: false,
+  },
+  {
     id: "desafio-educacion-ecuador",
     title: "Autismo y Educación: Un Desafío Urgente en el Sistema Público",
     pubDate: new Date("2025-02-10"),
     description:
-      "Analizamos las cifras del Ministerio de Educación: 4.179 estudiantes con diagnóstico de autismo enfrentan barreras de inclusión y falta de capacitación docente.",
+      "Según datos del Ministerio de Educación, miles de estudiantes con autismo enfrentan barreras de inclusión. Es vital la detección y la capacitación docente.",
     author: "Investigación APADA",
     tags: ["Educación", "Estadísticas"],
     isDraft: false,
   },
 ];
 
+// --- Service Logic ---
 export const blogService = {
   getAllPosts: async () => {
     return MOCK_POSTS.filter((post) => !post.isDraft).sort(

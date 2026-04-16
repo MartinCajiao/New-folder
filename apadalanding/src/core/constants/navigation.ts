@@ -1,11 +1,14 @@
-// Definimos el contrato estricto para la navegación
+// ==========================================
+// src/core/constants/navigation.ts
+// ==========================================
+
 export interface NavItem {
-  name: string;
+  name: string; // <-- Aquí está la corrección principal
   href?: string;
   submenu?: NavItem[];
 }
 
-// Navegación principal (Usada en Navbar y Footer)
+// --- Main Navigation ---
 export const MAIN_NAV: NavItem[] = [
   {
     name: "Inicio",
@@ -29,19 +32,20 @@ export const MAIN_NAV: NavItem[] = [
   },
 ];
 
-// Enlaces de acción directa (Usados en los botones resaltados)
+// --- Call To Action Links ---
 export const CTA_LINKS = {
+  // Ajustado a 'donar' para que haga match perfecto con tu Navbar
   donar: { name: "QUIERO DONAR", href: "/donaciones" },
   contacto: { name: "Contáctanos", href: "/contacto" },
 };
 
-// Redes sociales y contacto (Para el Footer y botones flotantes)
+// --- Social & Contact Data ---
 export const SOCIAL_LINKS = [
-  { name: "Facebook", href: "#facebook" },
-  { name: "Twitter", href: "#twitter" },
-  { name: "YouTube", href: "#youtube" },
-  { name: "Instagram", href: "#instagram" },
-  { name: "WhatsApp", href: "https://wa.me/593996062600" },
+  { id: "facebook", name: "Facebook", href: "#facebook" },
+  { id: "twitter", name: "Twitter", href: "#twitter" },
+  { id: "youtube", name: "YouTube", href: "#youtube" },
+  { id: "instagram", name: "Instagram", href: "#instagram" },
+  { id: "whatsapp", name: "WhatsApp", href: "https://wa.me/593996062600" },
 ];
 
 export const CONTACT_INFO = {

@@ -2,12 +2,15 @@
 import MainLayout from '../layouts/MainLayout.astro';
 import { DonationCard } from '../components/sections/DonationCard';
 import { SITE_INFO, IMPACT_METRICS } from '../core/constants/site-info';
+
+// --- Page Configuration ---
+const pageTitle = "Donaciones y Voluntariado";
+const pageDescription = "Colabora con APADA del Ecuador. Tu apoyo nos permite seguir brindando recursos, asesoría legal y actividades inclusivas.";
 ---
 
-<MainLayout 
-  title="Donaciones y Voluntariado" 
-  description="Colabora con APADA del Ecuador. Tu apoyo nos permite seguir brindando recursos, asesoría legal y actividades inclusivas."
->
+<MainLayout title={pageTitle} description={pageDescription}>
+  
+  {/* Header y Métricas de Impacto */}
   <section class="bg-blue-600 py-16 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
@@ -20,9 +23,11 @@ import { SITE_INFO, IMPACT_METRICS } from '../core/constants/site-info';
       <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
         {IMPACT_METRICS.map((metric) => (
           <div class="text-center p-6 bg-white/10 rounded-2xl backdrop-blur-sm">
-            <span class="block text-4xl md:text-5xl font-black mb-2">{metric.valor}</span>
+            <span class="block text-4xl md:text-5xl font-black mb-2">
+              {metric.value}
+            </span>
             <span class="text-sm md:text-base font-medium text-blue-100 uppercase tracking-wide">
-              {metric.etiqueta}
+              {metric.label}
             </span>
           </div>
         ))}
@@ -30,17 +35,22 @@ import { SITE_INFO, IMPACT_METRICS } from '../core/constants/site-info';
     </div>
   </section>
 
+  {/* Propósito Institucional */}
   <section class="py-20 bg-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid md:grid-cols-2 gap-12 lg:gap-20 items-start">
         <div class="space-y-6">
-          <h2 class="text-3xl font-bold text-slate-900 border-l-4 border-orange-500 pl-4">Nuestra Misión</h2>
+          <h2 class="text-3xl font-bold text-slate-900 border-l-4 border-orange-500 pl-4">
+            Nuestra Misión
+          </h2>
           <p class="text-lg text-slate-600 leading-relaxed">
             {SITE_INFO.mission}
           </p>
         </div>
         <div class="space-y-6">
-          <h2 class="text-3xl font-bold text-slate-900 border-l-4 border-blue-600 pl-4">Nuestra Visión</h2>
+          <h2 class="text-3xl font-bold text-slate-900 border-l-4 border-blue-600 pl-4">
+            Nuestra Visión
+          </h2>
           <p class="text-lg text-slate-600 leading-relaxed">
             {SITE_INFO.vision}
           </p>
@@ -49,6 +59,7 @@ import { SITE_INFO, IMPACT_METRICS } from '../core/constants/site-info';
     </div>
   </section>
 
+  {/* Sección de Recaudación */}
   <section class="py-20 bg-slate-50 border-t border-slate-100">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="text-center mb-12">
@@ -58,6 +69,7 @@ import { SITE_INFO, IMPACT_METRICS } from '../core/constants/site-info';
         </p>
       </div>
 
+      {/* Componente React con hidratación para el copiado al portapapeles */}
       <DonationCard client:load />
 
       <div class="mt-16 text-center">

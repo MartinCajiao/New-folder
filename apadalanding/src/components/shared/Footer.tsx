@@ -1,31 +1,49 @@
+// Ajusta estas rutas según tu estructura de carpetas o tus alias (@core/...)
+import { CONTACT_INFO, SOCIAL_LINKS } from "../../core/constants/navigation";
+import { SITE_INFO } from "../../core/constants/site-info";
+
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  // Arreglos locales para mantener el JSX limpio sin quemar etiquetas repetitivas
+  const MENU_LINKS = [
+    { label: "Inicio", href: "/" },
+    { label: "Nosotros", href: "/nosotros" },
+    { label: "Aliados", href: "/aliados" },
+    { label: "Ayúdanos", href: "/donaciones" },
+  ];
+
+  const RESOURCE_LINKS = [
+    { label: "Marco Legal Ecuador", href: "/marco-legal" },
+    { label: "Podcast", href: "/podcast" },
+    { label: "Blog Apada", href: "/blog" },
+    { label: "Día del Autismo", href: "/dia-del-autismo" },
+  ];
 
   return (
     <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Grid Principal */}
+        {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
           {/* Columna 1: Branding */}
           <div className="space-y-4">
             <span className="text-2xl font-bold text-white tracking-tight">
-              APADA
+              {SITE_INFO.shortName}
             </span>
             <p className="text-sm leading-relaxed text-slate-400">
               Somos padres que ayudan a padres en el camino del autismo. Una
               organización sin fines de lucro promoviendo inclusión y apoyo.
             </p>
-            {/* Redes Sociales */}
+
             <div className="flex space-x-4 pt-2">
-              {["Facebook", "Twitter", "Instagram", "Youtube"].map((red) => (
+              {SOCIAL_LINKS.map((social) => (
                 <a
-                  key={red}
-                  href={`#${red.toLowerCase()}`}
+                  key={social.id}
+                  href={social.href}
                   className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors duration-300"
-                  aria-label={red}
+                  aria-label={social.name}
                 >
-                  <span className="text-xs">{red[0]}</span>{" "}
-                  {/* Placeholder para íconos */}
+                  <span className="text-xs">{social.name[0]}</span>
                 </a>
               ))}
             </div>
@@ -37,35 +55,16 @@ export const Footer = () => {
               Menú
             </h4>
             <ul className="space-y-3 text-sm">
-              <li>
-                <a href="/" className="hover:text-blue-400 transition-colors">
-                  Inicio
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/nosotros"
-                  className="hover:text-blue-400 transition-colors"
-                >
-                  Nosotros
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/aliados"
-                  className="hover:text-blue-400 transition-colors"
-                >
-                  Aliados
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/donaciones"
-                  className="hover:text-blue-400 transition-colors"
-                >
-                  Ayúdanos
-                </a>
-              </li>
+              {MENU_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="hover:text-blue-400 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -75,38 +74,16 @@ export const Footer = () => {
               Recursos
             </h4>
             <ul className="space-y-3 text-sm">
-              <li>
-                <a
-                  href="/marco-legal"
-                  className="hover:text-blue-400 transition-colors"
-                >
-                  Marco Legal Ecuador
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/podcast"
-                  className="hover:text-blue-400 transition-colors"
-                >
-                  Podcast
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/blog"
-                  className="hover:text-blue-400 transition-colors"
-                >
-                  Blog Apada
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/dia-del-autismo"
-                  className="hover:text-blue-400 transition-colors"
-                >
-                  Día del Autismo
-                </a>
-              </li>
+              {RESOURCE_LINKS.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="hover:text-blue-400 transition-colors"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -118,38 +95,38 @@ export const Footer = () => {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <span className="mt-1 text-blue-500">📍</span>
-                <span>
-                  Ulpiano Páez y Ramirez Dávalos.
-                  <br />
-                  Edificio Eiffel - Quito
+                {/* Reemplazamos el <br/> por lógica CSS y el dato de la constante */}
+                <span className="whitespace-pre-line">
+                  {CONTACT_INFO.address.replace(" - ", "\n")}
                 </span>
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-blue-500">✉️</span>
                 <a
-                  href="mailto:info@apadadelecuador.org"
+                  href={`mailto:${CONTACT_INFO.email}`}
                   className="hover:text-white transition-colors"
                 >
-                  info@apadadelecuador.org
+                  {CONTACT_INFO.email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
                 <span className="text-blue-500">📱</span>
                 <a
-                  href="https://wa.me/593996062600"
+                  href={`https://wa.me/${CONTACT_INFO.phone.replace(/[^0-9]/g, "")}`}
                   className="hover:text-white transition-colors"
                 >
-                  +593 99 606 2600
+                  {CONTACT_INFO.phone}
                 </a>
               </li>
             </ul>
           </div>
         </div>
 
-        {/* Separador */}
+        {/* Separador Legal */}
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
           <p>
-            © {currentYear} APADA del Ecuador. Todos los derechos reservados.
+            © {currentYear} {SITE_INFO.shortName}. Todos los derechos
+            reservados.
           </p>
           <div className="flex space-x-4">
             <a href="/politicas" className="hover:text-white transition-colors">

@@ -1,28 +1,8 @@
 import { useState } from "react";
+import { MAIN_NAV, CTA_LINKS } from "../../core/constants/navigation";
 
 export const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  // Definimos la estructura de navegación
-  const navItems = [
-    { name: "Inicio", href: "/" },
-    {
-      name: "Somos APADA",
-      submenu: [
-        { name: "Conócenos", href: "/nosotros" },
-        { name: "Aliados", href: "/aliados" },
-        { name: "Día del Autismo", href: "/dia-del-autismo" },
-      ],
-    },
-    {
-      name: "Recursos",
-      submenu: [
-        { name: "Marco Legal", href: "/marco-legal" },
-        { name: "Podcast", href: "/podcast" },
-        { name: "Blog", href: "/blog" },
-      ],
-    },
-  ];
 
   return (
     <nav className="bg-white border-b border-slate-100 sticky top-0 z-50 shadow-sm">
@@ -40,7 +20,7 @@ export const Navbar = () => {
 
           {/* Menú Desktop */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
+            {MAIN_NAV.map((item) => (
               <div key={item.name} className="relative group">
                 {item.submenu ? (
                   <>
@@ -60,6 +40,7 @@ export const Navbar = () => {
                         />
                       </svg>
                     </button>
+
                     {/* Dropdown Desktop */}
                     <div className="absolute left-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top -translate-y-2 group-hover:translate-y-0">
                       <div className="py-2">
@@ -77,7 +58,7 @@ export const Navbar = () => {
                   </>
                 ) : (
                   <a
-                    href={item.href}
+                    href={item.href || "#"}
                     className="text-slate-600 font-medium hover:text-blue-600 transition-colors py-2"
                   >
                     {item.name}
@@ -86,12 +67,12 @@ export const Navbar = () => {
               </div>
             ))}
 
-            {/* CTA Desktop */}
+            {/* CTA Desktop - CORREGIDO AQUÍ */}
             <a
-              href="/donaciones"
+              href={CTA_LINKS.donar.href}
               className="ml-4 px-6 py-2.5 bg-orange-500 text-white font-bold rounded-full hover:bg-orange-600 transition-transform transform hover:-translate-y-0.5 shadow-md shadow-orange-500/20"
             >
-              QUIERO DONAR
+              {CTA_LINKS.donar.name}
             </a>
           </div>
 
@@ -132,7 +113,7 @@ export const Navbar = () => {
       {/* Menú Móvil Desplegable */}
       {isMobileMenuOpen && (
         <div className="md:hidden bg-white border-t border-slate-100 px-4 pt-2 pb-6 space-y-1 shadow-lg absolute w-full">
-          {navItems.map((item) => (
+          {MAIN_NAV.map((item) => (
             <div key={item.name} className="py-2">
               {item.submenu ? (
                 <>
@@ -153,7 +134,7 @@ export const Navbar = () => {
                 </>
               ) : (
                 <a
-                  href={item.href}
+                  href={item.href || "#"}
                   className="block px-3 py-2 font-semibold text-slate-800 hover:text-blue-600 hover:bg-blue-50 rounded-md"
                 >
                   {item.name}
@@ -162,11 +143,12 @@ export const Navbar = () => {
             </div>
           ))}
           <div className="pt-4 px-3">
+            {/* CTA Móvil - CORREGIDO AQUÍ */}
             <a
-              href="/donaciones"
+              href={CTA_LINKS.donar.href}
               className="block w-full text-center px-6 py-3 bg-orange-500 text-white font-bold rounded-xl hover:bg-orange-600 shadow-md"
             >
-              QUIERO DONAR
+              {CTA_LINKS.donar.name}
             </a>
           </div>
         </div>

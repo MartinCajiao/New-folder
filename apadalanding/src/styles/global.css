@@ -1,4 +1,3 @@
-/* Sintaxis nueva de Tailwind v4 */
 @import "tailwindcss";
 
 @layer base {
@@ -13,30 +12,31 @@
       sans-serif;
   }
 
+  /* Layout y fondos gestionados directamente en MainLayout.astro */
   body {
-    /* El bg-slate-50 y flexbox ya están en MainLayout.astro */
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Balanceo de texto nativo para encabezados */
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    /* Usamos CSS nativo moderno en lugar de @apply */
     text-wrap: balance;
   }
 
+  /* Ajustes de legibilidad estándar para párrafos */
   p {
-    /* Equivalentes nativos para lectura cómoda */
     max-width: 65ch;
     line-height: 1.625;
   }
 
+  /* Indicador de foco global para accesibilidad */
   :focus-visible {
-    outline: 2px solid #2563eb; /* blue-600 */
+    outline: 2px solid #2563eb; /* equivalente a blue-600 */
     outline-offset: 2px;
   }
 
@@ -47,9 +47,11 @@
 }
 
 @layer utilities {
+  /* Utilidad para ocultar el scroll visual sin perder funcionalidad */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
+
   .scrollbar-hide {
     -ms-overflow-style: none;
     scrollbar-width: none;
