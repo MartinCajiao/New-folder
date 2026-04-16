@@ -1,1 +1,57 @@
+/* Sintaxis nueva de Tailwind v4 */
 @import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family:
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+  }
+
+  body {
+    /* El bg-slate-50 y flexbox ya están en MainLayout.astro */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /* Usamos CSS nativo moderno en lugar de @apply */
+    text-wrap: balance;
+  }
+
+  p {
+    /* Equivalentes nativos para lectura cómoda */
+    max-width: 65ch;
+    line-height: 1.625;
+  }
+
+  :focus-visible {
+    outline: 2px solid #2563eb; /* blue-600 */
+    outline-offset: 2px;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
