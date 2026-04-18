@@ -4,6 +4,7 @@
   html {
     scroll-behavior: smooth;
     font-family:
+      "Outfit",
       system-ui,
       -apple-system,
       BlinkMacSystemFont,
@@ -12,31 +13,23 @@
       sans-serif;
   }
 
-  /* Layout y fondos gestionados directamente en MainLayout.astro */
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color: #f8fafc;
   }
 
-  /* Balanceo de texto nativo para encabezados */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  h1, h2, h3, h4, h5, h6 {
     text-wrap: balance;
   }
 
-  /* Ajustes de legibilidad estándar para párrafos */
   p {
     max-width: 65ch;
     line-height: 1.625;
   }
 
-  /* Indicador de foco global para accesibilidad */
   :focus-visible {
-    outline: 2px solid #2563eb; /* equivalente a blue-600 */
+    outline: 2px solid #3b82f6;
     outline-offset: 2px;
   }
 
@@ -47,7 +40,6 @@
 }
 
 @layer utilities {
-  /* Utilidad para ocultar el scroll visual sin perder funcionalidad */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
@@ -56,4 +48,63 @@
     -ms-overflow-style: none;
     scrollbar-width: none;
   }
+  
+  .glass {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+  }
+
+  .glass-dark {
+    background: rgba(15, 23, 42, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .text-gradient {
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
 }
+
+/* Custom Premium Animations */
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes float-slow {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(1.5deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
+@keyframes blob {
+  0% { transform: translate(0px, 0px) scale(1); }
+  33% { transform: translate(30px, -50px) scale(1.05); }
+  66% { transform: translate(-20px, 20px) scale(0.95); }
+  100% { transform: translate(0px, 0px) scale(1); }
+}
+
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-blob {
+  animation: blob 20s infinite alternate;
+}
+
+/* Animation Delays */
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-400 { animation-delay: 400ms; }
+.delay-500 { animation-delay: 500ms; }

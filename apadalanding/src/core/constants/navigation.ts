@@ -3,12 +3,11 @@
 // ==========================================
 
 export interface NavItem {
-  name: string; // <-- Aquí está la corrección principal
+  name: string;
   href?: string;
   submenu?: NavItem[];
 }
 
-// --- Main Navigation ---
 export const MAIN_NAV: NavItem[] = [
   {
     name: "Inicio",
@@ -32,9 +31,21 @@ export const MAIN_NAV: NavItem[] = [
   },
 ];
 
-// --- Call To Action Links ---
+export const FOOTER_MENU_LINKS = [
+  { label: "Inicio", href: "/" },
+  { label: "Nosotros", href: "/nosotros" },
+  { label: "Aliados", href: "/aliados" },
+  { label: "Ayúdanos", href: "/donaciones" },
+];
+
+export const FOOTER_RESOURCE_LINKS = [
+  { label: "Marco Legal Ecuador", href: "/marco-legal" },
+  { label: "Podcast", href: "/podcast" },
+  { label: "Blog Apada", href: "/blog" },
+  { label: "Día del Autismo", href: "/dia-del-autismo" },
+];
+
 export const CTA_LINKS = {
-  // Ajustado a 'donar' para que haga match perfecto con tu Navbar
   donar: { name: "QUIERO DONAR", href: "/donaciones" },
   contacto: { name: "Contáctanos", href: "/contacto" },
 };

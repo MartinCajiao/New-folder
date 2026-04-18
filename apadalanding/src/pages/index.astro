@@ -1,215 +1,93 @@
 ---
 import MainLayout from '../layouts/MainLayout.astro';
 import { Hero } from '../components/sections/Hero';
-import { Card } from '../components/ui/Card';
+import { Features } from '../components/sections/Features';
 import { Button } from '../components/ui/Button';
+import { LANDING_CONTENT } from '../core/constants/landing-content';
 
-// --- Foundation Pillars ---
-const pillars = [
-  {
-    title: "Conciencia y educación",
-    description: "Organizamos actividades como caminatas y talleres para informar y conectar a la sociedad.",
-    icon: "🎨",
-    detail: "Talleres y Encuentros"
-  },
-  {
-    title: "Asesoría legal",
-    description: "Guiamos a las familias en temas de derechos y calificación de discapacidades con el MSP.",
-    icon: "⚖️",
-    detail: "Respaldo Jurídico"
-  },
-  {
-    title: "Apoyo mutuo",
-    description: "Espacios seguros donde las familias comparten experiencias y aprenden de la mano.",
-    icon: "🫂",
-    detail: "Red de Familias"
-  }
-];
+const { podcast, testimonials, cta } = LANDING_CONTENT;
 
-// --- Educational Resources ---
-const resources = [
-  { 
-    title: "Canal de YouTube", 
-    description: "Capacitaciones con expertos y doctores especializados.", 
-    link: "#", 
-    label: "Ver videos", 
-    icon: "📺", 
-    color: "bg-red-50 text-red-600" 
-  },
-  { 
-    title: "Marco Legal", 
-    description: "Leyes y mecanismos que protegen nuestros derechos.", 
-    link: "/marco-legal", 
-    label: "Recursos Legales", 
-    icon: "📜", 
-    color: "bg-blue-50 text-blue-600" 
-  },
-  { 
-    title: "Recursos Educativos", 
-    description: "Guías de estudio y adaptaciones curriculares.", 
-    link: "#", 
-    label: "Material de apoyo", 
-    icon: "📚", 
-    color: "bg-green-50 text-green-600" 
-  },
-  { 
-    title: "Podcast", 
-    description: "Vivencias reales sobre el cuidado y el TEA.", 
-    link: "/podcast", 
-    label: "Escúchanos", 
-    icon: "🎙️", 
-    color: "bg-purple-50 text-purple-600" 
-  }
-];
-
-// --- Community Testimonials ---
-const testimonials = [
-  {
-    name: "María López",
-    role: "Mamá de un niño en el espectro",
-    text: "Gracias a APADA pude entender mejor el autismo y conectar con mi hijo. Estos eventos cambiaron mi vida.",
-    rating: 5
-  },
-  {
-    name: "Juan Pérez",
-    role: "Terapeuta Ocupacional",
-    text: "La información compartida en las jornadas es invaluable. Es un espacio necesario para profesionales.",
-    rating: 5
-  }
-];
+const delayClasses = ['delay-100', 'delay-200', 'delay-300', 'delay-400', 'delay-500'];
 ---
 
 <MainLayout>
+  {/* Hero Section */}
   <Hero client:load />
 
-  {/* Sección: Propósito e Inclusión */}
-  <section class="py-24 bg-white relative">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-3xl mx-auto mb-20">
-        <span class="inline-block px-4 py-1.5 rounded-full bg-blue-50 text-blue-600 text-xs font-bold uppercase tracking-widest mb-4">
-          Nuestro Propósito
-        </span>
-        <h2 class="text-4xl md:text-5xl font-black text-slate-900 leading-tight">
-          Buscamos generar conciencia e <span class="text-blue-600 underline decoration-orange-400 decoration-4 underline-offset-8">inclusión real</span>.
-        </h2>
-      </div>
+  {/* Pillars and Resources Section */}
+  <Features client:visible />
 
-      <div class="grid md:grid-cols-3 gap-10">
-        {pillars.map(pillar => (
-          <div class="group p-10 rounded-[2.5rem] bg-slate-50 border border-slate-100 hover:bg-white hover:shadow-2xl hover:shadow-blue-900/5 transition-all duration-500">
-            <div class="text-5xl mb-8 transform group-hover:scale-110 group-hover:-rotate-12 transition-transform duration-300 inline-block">
-              {pillar.icon}
-            </div>
-            <span class="block text-xs font-bold text-orange-500 uppercase tracking-widest mb-2">
-              {pillar.detail}
-            </span>
-            <h3 class="text-2xl font-bold text-slate-900 mb-4">{pillar.title}</h3>
-            <p class="text-slate-600 leading-relaxed text-sm md:text-base">{pillar.description}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  {/* Sección: Biblioteca de Recursos */}
-  <section class="py-24 bg-slate-900 text-white rounded-[4rem] mx-4 my-8 overflow-hidden relative border-b-8 border-orange-500">
-    <div class="absolute top-0 right-0 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px] -mr-48 -mt-48" />
-    
+  {/* Featured Podcast Section */}
+  <section class="py-24 overflow-hidden relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-      <div class="grid lg:grid-cols-2 gap-20 items-center">
-        <div>
-          <h2 class="text-4xl md:text-5xl font-bold mb-8">
-            Empoderamos a través del <span class="text-blue-400">conocimiento</span>.
-          </h2>
-          <p class="text-slate-400 text-lg mb-10 leading-relaxed">
-            Brindamos herramientas prácticas para cuidadores y personas autistas mediante mecanismos legales, educativos y acompañamiento constante.
-          </p>
-          <Button variant="primary" size="lg">Explorar Biblioteca</Button>
-        </div>
-        
-        <div class="grid sm:grid-cols-2 gap-6">
-          {resources.map(resource => (
-            <a href={resource.link} class="p-8 bg-white/5 border border-white/10 rounded-3xl hover:bg-white/10 hover:border-white/20 transition-all group relative overflow-hidden">
-              <div class={`w-14 h-14 rounded-2xl ${resource.color} flex items-center justify-center text-3xl mb-6 shadow-lg`}>
-                {resource.icon}
-              </div>
-              <h4 class="font-bold text-xl mb-3">{resource.title}</h4>
-              <p class="text-slate-400 text-xs mb-6 leading-relaxed">{resource.description}</p>
-              <div class="flex items-center text-sm font-bold text-blue-400 group-hover:text-blue-300">
-                {resource.label} 
-                <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-                </svg>
-              </div>
-            </a>
-          ))}
-        </div>
-      </div>
-    </div>
-  </section>
-
-  {/* Sección: Podcast Destacado */}
-  <section class="py-24 bg-white overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="bg-blue-50 rounded-[3rem] p-8 md:p-16 border border-blue-100 relative shadow-inner">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="order-2 lg:order-1">
-             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-orange-100 text-orange-700 text-xs font-bold uppercase tracking-widest mb-6">
-                🎙️ Capítulo 2: Cuidadores
+      <div class="glass bg-white/40 rounded-[3rem] p-8 md:p-16 border border-white relative shadow-xl hover:shadow-2xl transition-shadow duration-500">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+          
+          <div class="order-2 lg:order-1 animate-fade-in-up">
+             <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-orange-100/80 backdrop-blur-sm text-orange-700 text-xs font-extrabold uppercase tracking-widest mb-6 border border-orange-200">
+                {podcast.tag}
              </div>
-             <h3 class="text-blue-900 text-lg font-bold mb-2">Más allá del Autismo</h3>
-             <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">Hablemos de cuidadores</h2>
-             <p class="text-slate-600 text-lg mb-8 leading-relaxed">
-                Exploramos el rol fundamental de quienes acompañan. Retos emocionales, físicos y sociales. <strong>Cuidar de tu bienestar es la base de todo.</strong>
+             <h3 class="text-blue-600 text-xl font-black mb-2 tracking-tight">{podcast.subtitle}</h3>
+             <h2 class="text-4xl md:text-5xl font-black text-slate-900 mb-6 leading-tight">{podcast.title}</h2>
+             <p class="text-slate-600 text-lg md:text-xl mb-10 leading-relaxed font-light">
+                {podcast.description}
              </p>
-             <Button variant="secondary" size="lg">Escuchar Episodio</Button>
+             <Button variant="secondary" size="lg" className="shadow-md hover:shadow-lg transition-shadow">{podcast.button}</Button>
           </div>
+
           <div class="order-1 lg:order-2 flex justify-center">
-            <div class="relative">
-              <div class="absolute inset-0 bg-blue-400/20 rounded-full blur-3xl animate-pulse" />
-              <div class="relative w-72 h-72 bg-slate-900 rounded-[2.5rem] flex flex-col items-center justify-center shadow-2xl">
-                <span class="text-7xl mb-4">🎧</span>
-                <div class="flex gap-1 items-end h-8">
-                  {[1,2,3,4,5].map(() => (
-                    <div class="w-1.5 bg-blue-500 rounded-full animate-[bounce_1s_infinite]" />
-                  ))}
+            <div class="relative animate-float">
+              <div class="absolute inset-0 bg-blue-400/20 rounded-full blur-[80px] animate-pulse" />
+              <div class="relative w-72 h-72 lg:w-80 lg:h-80 bg-slate-900 rounded-[3rem] flex flex-col items-center justify-center shadow-2xl overflow-hidden group border border-slate-700">
+                <div class="absolute inset-0 bg-gradient-to-tr from-blue-600/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+                <span class="text-8xl mb-6 transform group-hover:scale-110 transition-transform duration-500 drop-shadow-xl z-10">🎧</span>
+                <div class="flex gap-1.5 items-end h-10 z-10">
+                  <div class="w-2 bg-blue-400 rounded-full animate-[bounce_1s_infinite] shadow-lg shadow-blue-500/50 h-2/5 delay-100" />
+                  <div class="w-2 bg-blue-400 rounded-full animate-[bounce_1s_infinite] shadow-lg shadow-blue-500/50 h-3/4 delay-200" />
+                  <div class="w-2 bg-blue-400 rounded-full animate-[bounce_1s_infinite] shadow-lg shadow-blue-500/50 h-1/2 delay-300" />
+                  <div class="w-2 bg-blue-400 rounded-full animate-[bounce_1s_infinite] shadow-lg shadow-blue-500/50 h-4/5 delay-400" />
+                  <div class="w-2 bg-blue-400 rounded-full animate-[bounce_1s_infinite] shadow-lg shadow-blue-500/50 h-3/5 delay-500" />
                 </div>
               </div>
             </div>
           </div>
+
         </div>
       </div>
     </div>
   </section>
 
-  {/* Sección: Testimonios */}
-  <section class="py-24 bg-slate-50 border-y border-slate-100">
+  {/* Community Testimonials Section */}
+  <section class="py-24 relative bg-slate-50/50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-16">
-        <h2 class="text-3xl md:text-4xl font-bold text-slate-900 italic">Lo que dice nuestra comunidad</h2>
+      <div class="text-center mb-20 animate-fade-in-up">
+        <h2 class="text-4xl md:text-5xl font-black text-slate-900">{testimonials.title}</h2>
       </div>
 
       <div class="grid md:grid-cols-2 gap-10">
-        {testimonials.map(testimonial => (
-          <div class="bg-white p-12 rounded-[3rem] shadow-sm border border-slate-100 relative group hover:shadow-xl transition-all">
-            <div class="absolute top-8 right-12 text-slate-100 text-8xl font-serif pointer-events-none group-hover:text-blue-50 transition-colors">“</div>
-            <div class="flex text-orange-400 mb-8">
+        {testimonials.items.map((testimonial, index) => (
+          <div class={`glass p-10 md:p-12 rounded-[3rem] shadow-xl shadow-slate-200/50 border border-white relative group hover:bg-white transition-colors duration-500 animate-fade-in-up ${delayClasses[index] || ''}`}>
+            <div class="absolute top-8 right-12 text-slate-200 text-8xl font-serif pointer-events-none group-hover:text-blue-50 transition-colors duration-500">“</div>
+            
+            <div class="flex text-orange-400 mb-8 drop-shadow-sm">
               {[...Array(testimonial.rating)].map(() => (
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20">
+                <svg class="w-6 h-6 fill-current" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                 </svg>
               ))}
             </div>
-            <p class="text-xl text-slate-700 font-medium mb-10 leading-relaxed relative z-10 italic">
+            
+            <p class="text-xl md:text-2xl text-slate-700 font-medium mb-10 leading-relaxed relative z-10 italic">
               "{testimonial.text}"
             </p>
-            <div class="flex items-center gap-5">
-              <div class="w-14 h-14 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center font-bold text-white text-xl shadow-lg">
+            
+            <div class="flex items-center gap-5 mt-auto">
+              <div class="w-16 h-16 bg-gradient-to-br from-blue-500 to-teal-400 rounded-full flex items-center justify-center font-bold text-white text-2xl shadow-lg shadow-blue-500/30 ring-4 ring-white">
                 {testimonial.name[0]}
               </div>
               <div>
-                <h4 class="font-bold text-slate-900 text-lg">{testimonial.name}</h4>
-                <p class="text-sm text-slate-500 font-medium">{testimonial.role}</p>
+                <h4 class="font-bold text-slate-900 text-lg md:text-xl">{testimonial.name}</h4>
+                <p class="text-sm md:text-base text-slate-500 font-medium">{testimonial.role}</p>
               </div>
             </div>
           </div>
@@ -218,22 +96,33 @@ const testimonials = [
     </div>
   </section>
 
-  {/* CTA Final */}
-  <section class="py-24 bg-white">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="bg-gradient-to-br from-blue-600 to-blue-800 p-12 md:p-20 rounded-[4rem] text-white text-center shadow-2xl relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]" />
-        <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight relative z-10">¿Listo para marcar la diferencia?</h2>
-        <p class="text-blue-100 text-xl mb-12 max-w-2xl mx-auto relative z-10">
-          Tu apoyo nos ayuda a seguir brindando recursos gratuitos y acompañamiento legal a cientos de familias.
+  {/* Final Call to Action Section */}
+  <section class="py-24 relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-4 relative z-10">
+      <div class="bg-gradient-to-br from-blue-600 via-blue-700 to-teal-600 p-12 md:p-24 rounded-[4rem] text-white text-center shadow-2xl shadow-blue-900/40 relative overflow-hidden group">
+        
+        <div class="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none">
+           <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-white rounded-full blur-[120px] animate-blob" />
+           <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-orange-300 rounded-full blur-[120px] animate-blob delay-200" />
+        </div>
+        
+        <h2 class="text-4xl md:text-6xl lg:text-7xl font-black mb-8 leading-[1.1] relative z-10">
+          {cta.title}
+        </h2>
+        
+        <p class="text-blue-100 text-xl md:text-2xl mb-12 max-w-3xl mx-auto relative z-10 font-light">
+          {cta.description}
         </p>
+        
         <div class="flex flex-col sm:flex-row gap-6 justify-center relative z-10">
-          <Button variant="secondary" size="lg" className="!bg-white !text-blue-700 hover:!bg-blue-50">
-            Unirme a la Asociación
-          </Button>
-          <a href="/donaciones" class="bg-orange-500 px-10 py-5 rounded-2xl font-bold text-lg hover:bg-orange-600 transition-all shadow-xl shadow-orange-500/40 transform hover:-translate-y-1">
-            Quiero Donar Ahora
+          <a href={cta.primaryLink} class="group/btn relative inline-flex justify-center items-center px-10 py-5 text-lg font-bold text-white bg-orange-500 hover:bg-orange-600 rounded-2xl shadow-xl shadow-orange-500/40 transition-all duration-300 transform hover:-translate-y-1 overflow-hidden">
+            <div class="absolute inset-0 w-full h-full bg-white/20 scale-x-0 group-hover/btn:scale-x-100 origin-left transition-transform duration-500 ease-out" />
+            <span class="relative z-10">{cta.primaryButton}</span>
           </a>
+          
+          <Button variant="secondary" size="lg" className="!bg-white/10 backdrop-blur-md !text-white border border-white/30 hover:!bg-white hover:!text-blue-900 shadow-xl transition-all duration-300 !px-10 !py-5 !text-lg !rounded-2xl">
+            {cta.secondaryButton}
+          </Button>
         </div>
       </div>
     </div>

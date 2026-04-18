@@ -1,38 +1,21 @@
-// Ajusta estas rutas según tu estructura de carpetas o tus alias (@core/...)
-import { CONTACT_INFO, SOCIAL_LINKS } from "../../core/constants/navigation";
+import { MapPin, Mail, Smartphone } from "lucide-react";
+import { CONTACT_INFO, SOCIAL_LINKS, FOOTER_MENU_LINKS, FOOTER_RESOURCE_LINKS } from "../../core/constants/navigation";
 import { SITE_INFO } from "../../core/constants/site-info";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
 
-  // Arreglos locales para mantener el JSX limpio sin quemar etiquetas repetitivas
-  const MENU_LINKS = [
-    { label: "Inicio", href: "/" },
-    { label: "Nosotros", href: "/nosotros" },
-    { label: "Aliados", href: "/aliados" },
-    { label: "Ayúdanos", href: "/donaciones" },
-  ];
-
-  const RESOURCE_LINKS = [
-    { label: "Marco Legal Ecuador", href: "/marco-legal" },
-    { label: "Podcast", href: "/podcast" },
-    { label: "Blog Apada", href: "/blog" },
-    { label: "Día del Autismo", href: "/dia-del-autismo" },
-  ];
-
   return (
-    <footer className="bg-slate-900 text-slate-300 pt-16 pb-8">
+    <footer className="bg-slate-900 text-slate-300 pt-16 pb-8 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
-          {/* Columna 1: Branding */}
+          
           <div className="space-y-4">
             <span className="text-2xl font-bold text-white tracking-tight">
               {SITE_INFO.shortName}
             </span>
             <p className="text-sm leading-relaxed text-slate-400">
-              Somos padres que ayudan a padres en el camino del autismo. Una
-              organización sin fines de lucro promoviendo inclusión y apoyo.
+              {SITE_INFO.footerText}
             </p>
 
             <div className="flex space-x-4 pt-2">
@@ -40,22 +23,21 @@ export const Footer = () => {
                 <a
                   key={social.id}
                   href={social.href}
-                  className="w-8 h-8 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors duration-300"
+                  className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors duration-300 shadow-md"
                   aria-label={social.name}
                 >
-                  <span className="text-xs">{social.name[0]}</span>
+                  <span className="text-sm font-bold">{social.name[0]}</span>
                 </a>
               ))}
             </div>
           </div>
 
-          {/* Columna 2: Menú Principal */}
           <div>
             <h4 className="text-white font-semibold mb-4 uppercase tracking-wider text-sm">
               Menú
             </h4>
             <ul className="space-y-3 text-sm">
-              {MENU_LINKS.map((link) => (
+              {FOOTER_MENU_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -68,13 +50,12 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Columna 3: Recursos */}
           <div>
             <h4 className="text-white font-semibold mb-4 uppercase tracking-wider text-sm">
               Recursos
             </h4>
             <ul className="space-y-3 text-sm">
-              {RESOURCE_LINKS.map((link) => (
+              {FOOTER_RESOURCE_LINKS.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
@@ -87,33 +68,31 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Columna 4: Contacto */}
           <div>
             <h4 className="text-white font-semibold mb-4 uppercase tracking-wider text-sm">
               Contacto
             </h4>
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
-                <span className="mt-1 text-blue-500">📍</span>
-                {/* Reemplazamos el <br/> por lógica CSS y el dato de la constante */}
-                <span className="whitespace-pre-line">
+                <MapPin className="mt-1 w-5 h-5 text-blue-500 shrink-0" />
+                <span className="whitespace-pre-line text-slate-400">
                   {CONTACT_INFO.address.replace(" - ", "\n")}
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-blue-500">✉️</span>
+                <Mail className="w-5 h-5 text-blue-500 shrink-0" />
                 <a
                   href={`mailto:${CONTACT_INFO.email}`}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors text-slate-400"
                 >
                   {CONTACT_INFO.email}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <span className="text-blue-500">📱</span>
+                <Smartphone className="w-5 h-5 text-blue-500 shrink-0" />
                 <a
                   href={`https://wa.me/${CONTACT_INFO.phone.replace(/[^0-9]/g, "")}`}
-                  className="hover:text-white transition-colors"
+                  className="hover:text-white transition-colors text-slate-400"
                 >
                   {CONTACT_INFO.phone}
                 </a>
@@ -122,13 +101,11 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Separador Legal */}
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
           <p>
-            © {currentYear} {SITE_INFO.shortName}. Todos los derechos
-            reservados.
+            © {currentYear} {SITE_INFO.shortName}. {SITE_INFO.copyrightText}
           </p>
-          <div className="flex space-x-4">
+          <div className="flex space-x-6">
             <a href="/politicas" className="hover:text-white transition-colors">
               Política de Privacidad
             </a>
